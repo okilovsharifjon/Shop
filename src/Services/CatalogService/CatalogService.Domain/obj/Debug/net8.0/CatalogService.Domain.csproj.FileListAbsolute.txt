@@ -1,0 +1,11 @@
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\CatalogService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\CatalogService.Domain.AssemblyInfoInputs.cache
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\CatalogService.Domain.AssemblyInfo.cs
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\CatalogService.Domain.csproj.CoreCompileInputs.cache
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\bin\Debug\net8.0\CatalogService.Domain.deps.json
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\bin\Debug\net8.0\CatalogService.Domain.dll
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\bin\Debug\net8.0\CatalogService.Domain.pdb
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\CatalogService.Domain.dll
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\refint\CatalogService.Domain.dll
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\CatalogService.Domain.pdb
+E:\MyProjects\Store\src\Services\CatalogService\CatalogService.Domain\obj\Debug\net8.0\ref\CatalogService.Domain.dll
