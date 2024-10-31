@@ -8,9 +8,9 @@ using OsonCommerce.Domain.Entities;
 using OsonCommerce.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 
-namespace OsonCommerce.Infrastructure.DbContext
+namespace OsonCommerce.Infrastructure
 {
-    public class OsonCommerceDbContext  : DbContext
+    public class OsonCommerceDbContext(DbContextOptions options)  : DbContext(options)
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stocks { get; set; }
@@ -36,9 +36,9 @@ namespace OsonCommerce.Infrastructure.DbContext
             base.OnModelCreating(modelBuilder);
             
         }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=catalog_service;Username=postgres;Password=admin;");
-    }
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=catalog_service;Username=postgres;Password=admin;");
+    //}
     }
 }

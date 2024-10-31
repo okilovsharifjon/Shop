@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OsonCommerce.Application\OsonCommerce.Application.csproj" />
+    <ProjectReference Include="..\OsonCommerce.Infrastructure\OsonCommerce.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

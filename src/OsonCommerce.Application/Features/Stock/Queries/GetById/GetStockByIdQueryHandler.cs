@@ -4,6 +4,7 @@ using MediatR;
 using AutoMapper;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Application.Interfaces;
 
 
 namespace OsonCommerce.Application.Features

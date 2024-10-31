@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediatR;
 using OsonCommerce.Domain.Entities;
+using OsonCommerce.Application.Interfaces;
 
 namespace OsonCommerce.Application.Features
 {

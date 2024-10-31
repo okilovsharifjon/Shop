@@ -1,4 +1,4 @@
-using CatalogService.Domain.Entities;
+using OsonCommerce.Domain.Entities;
 using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;

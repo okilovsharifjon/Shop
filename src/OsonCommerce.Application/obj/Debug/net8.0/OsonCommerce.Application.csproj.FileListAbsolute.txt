@@ -1,0 +1,16 @@
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.csproj.AssemblyReference.cache
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.AssemblyInfoInputs.cache
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.AssemblyInfo.cs
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.csproj.CoreCompileInputs.cache
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.sourcelink.json
+E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Application.deps.json
+E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Application.dll
+E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Application.pdb
+E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Domain.dll
+E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Domain.pdb
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.csproj.CopyComplete
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.dll
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\refint\OsonCommerce.Application.dll
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.pdb
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\ref\OsonCommerce.Application.dll

@@ -1,3 +1,5 @@
+using OsonCommerce.Domain.Enums;
+
 namespace OsonCommerce.Domain.Entities
 {
     public class CashboxOperation

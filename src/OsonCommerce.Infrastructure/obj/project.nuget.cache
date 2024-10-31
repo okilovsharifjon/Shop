@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c4LRThsgMt/zc/7nakXV7QWS2poA2vYdSVNnvl32Eyja/1xF8oyGoxE0vC3F7fL59PEU5j88fPm8dXUV0kOE1A==",
+  "dgSpecHash": "I/y+0p/ug/wo48qF8HsYjBPH1e0JBW0YCY+UuXmPdkjxi8mN1WyKnx1llDSGwU1g7Ikz4nmGJUPRp6cVQot2dw==",
   "success": true,
   "projectFilePath": "E:\\MyProjects\\Store\\src\\OsonCommerce.Infrastructure\\OsonCommerce.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\user\\.nuget\\packages\\commonservicelocator\\1.0.0\\commonservicelocator.1.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\entityframework\\5.0.0\\entityframework.5.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\fluentvalidation\\11.10.0\\fluentvalidation.11.10.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.10.0\\fluentvalidation.dependencyinjectionextensions.11.10.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

@@ -8,8 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Infrastructure.Repositories;
 using OsonCommerce.Application.Interfaces;
-using OsonCommerce.Infrastructure.DbContext;
-using OsonCommerce.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace OsonCommerce.Infrastructure
 {

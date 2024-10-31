@@ -3,7 +3,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using AutoMapper;
-using CatalogService.Domain.Entities;
+using OsonCommerce.Domain.Entities;
+using OsonCommerce.Application.Interfaces;
 
 namespace OsonCommerce.Application.Features
 {

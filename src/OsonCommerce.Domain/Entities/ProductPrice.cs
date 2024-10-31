@@ -9,7 +9,7 @@ namespace OsonCommerce.Domain.Entities
         public decimal Price { get; set; }
 
        public virtual Product Product { get; set; }
-        public virtual Warehouse Warehouse { get; set; }
+        public virtual Stock Stock { get; set; }
         public virtual PriceType PriceType { get; set; }
     }
 }

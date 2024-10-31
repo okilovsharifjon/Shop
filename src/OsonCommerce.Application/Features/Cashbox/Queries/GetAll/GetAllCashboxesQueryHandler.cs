@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using AutoMapper;
 using OsonCommerce.Domain.Entities;
+using OsonCommerce.Application.Interfaces;
 
 namespace OsonCommerce.Application.Features
 {

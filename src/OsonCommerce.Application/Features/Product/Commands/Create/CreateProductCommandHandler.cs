@@ -12,14 +12,14 @@ namespace OsonCommerce.Application.Features
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, Guid>
     {
         private readonly IRepository<Product> _productRepository;
-        private readonly IRepository<Brand> _brandRepository;
+        private readonly IRepository<Manufacture> _brandRepository;
         private readonly IRepository<Category> _categoryRepository;
         private readonly IValidator<CreateProductCommand> _validator;
         private readonly IUnitOfWork _unitOfWork;
 
         public CreateProductCommandHandler(
             IRepository<Product> productRepository,
-            IRepository<Brand> brandRepository,
+            IRepository<Manufacture> brandRepository,
             IRepository<Category> categoryRepository,
             IValidator<CreateProductCommand> validator,
             IUnitOfWork unitOfWork)
@@ -51,7 +51,7 @@ namespace OsonCommerce.Application.Features
             var product = new Product
             {
                 Name = request.Name,
-                BrandId = request.BrandId,
+                ManufactureId = request.BrandId,
                 CategoryId = request.CategoryId,
                 Unit = request.Unit,
                 ImageName = request.ImageName,
