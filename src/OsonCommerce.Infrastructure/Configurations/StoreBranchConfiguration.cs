@@ -28,9 +28,17 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(sb => sb.OperatingHours)
                 .HasMaxLength(50);
 
-            builder.HasOne(sb => sb.Manager)
-                .WithMany()
-                .HasForeignKey(sb => sb.ManagerId);
+            builder.Property(sb => sb.IsActive)
+                .IsRequired();
+
+            builder.Property(sb => sb.NumberOfEmployees)
+                .IsRequired();
+
+            builder.HasMany(sb => sb.Managers)
+                .WithOne();
+
+            builder.HasMany(sb => sb.Managers)
+                .WithOne();
 
         }
     }

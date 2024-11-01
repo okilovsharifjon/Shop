@@ -9,6 +9,6 @@
         public decimal Balance { get; set; }
         public bool IsActive { get; set; }
         public DateTime LastUpdatedDate { get; set; }
-        public List<CashboxOperation> CashboxOperations { get; set; } = new List<CashboxOperation>();
+        public ICollection<CashboxOperation> CashboxOperations { get; set; }
     }
 }

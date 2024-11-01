@@ -2,27 +2,29 @@ using System.Threading;
 using System.Threading.Tasks;
 using OsonCommerce.Domain.Entities;
 using MediatR;
-using FluentValidation;
 using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Application.Exceptions;
 
 namespace OsonCommerce.Application.Features
 {
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
     {
         private readonly IRepository<Product> _productRepository;
-        private readonly IValidator<DeleteProductCommand> _validator;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteProductCommandHandler(IRepository<Product> productRepository, IValidator<DeleteProductCommand> validator, IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IRepository<Product> productRepository, IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
-            _validator = validator;
             _unitOfWork = unitOfWork;
         }
 
         public async Task Handle(DeleteProductCommand request, CancellationToken cancellationToken)
         {
-            await _validator.ValidateAsync(request, cancellationToken);
+            if (request.Id == Guid.Empty)
+            {
+                throw new EmptyRequestException("Id is required");
+            }
+
             await _productRepository.DeleteAsync(request.Id, cancellationToken);
             await _unitOfWork.SaveChangesAsync(cancellationToken);
         }

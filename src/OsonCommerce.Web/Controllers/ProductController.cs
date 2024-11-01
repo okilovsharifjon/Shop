@@ -29,6 +29,13 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("paged")]
+    public async Task<IActionResult> GetPaged(GetPagedProductsQuery query, CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
+    }
+
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(GetProductByIdQuery query, CancellationToken cancellationToken)
     {

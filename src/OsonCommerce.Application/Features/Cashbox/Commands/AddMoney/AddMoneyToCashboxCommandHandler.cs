@@ -50,7 +50,7 @@ namespace OsonCommerce.Application.Features
                 else
                 {
                     cashbox.Balance += request.Amount;
-                    await _unitOfWork.SaveChangesAsync(cancellationToken);
+                    await _unitOfWork.SaveChangesAsync();
                 }
             }
             catch (NetworkException)

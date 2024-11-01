@@ -21,6 +21,14 @@ namespace OsonCommerce.Infrastructure.Repositories
             return await _dbSet.AsNoTracking().ToListAsync(cancellationToken);
         }
 
+        public async Task<IEnumerable<T>> GetPagedAsync(int page, int pageSize)
+        {
+            return await _dbSet
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+        }
+
         public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _dbSet.FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
@@ -44,6 +52,11 @@ namespace OsonCommerce.Infrastructure.Repositories
             {
                 _dbSet.Remove(entity);
             }
+        }
+
+        public async Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default)
+        {
+            return await _dbSet.CountAsync(cancellationToken);
         }
     }
 }

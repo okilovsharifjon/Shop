@@ -16,12 +16,14 @@ namespace OsonCommerce.Infrastructure
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<OsonCommerceDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IRepository<Product>, Repository<Product>>();
             services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IRepository<Stock>, Repository<Stock>>();
             services.AddScoped<IRepository<Cashbox>, Repository<Cashbox>>();
+
+            services.AddDbContext<OsonCommerceDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
             return services;
         }
     }

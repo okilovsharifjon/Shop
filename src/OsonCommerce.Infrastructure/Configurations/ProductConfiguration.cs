@@ -41,7 +41,7 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(p => p.Weight)
                 .HasColumnType("DECIMAL")
                 .HasColumnName("weight")
-                .IsRequired();
+                .IsRequired(false);
 
             builder.Property(p => p.ManufactureDate)
                 .HasColumnType("TIMESTAMP")
@@ -61,6 +61,41 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnType("TIMESTAMP")
                 .HasColumnName("updated_at")
                 .IsRequired();
+
+            builder.Property(p => p.ManufactureId)
+                .HasColumnType("UUID")
+                .HasColumnName("manufacture_id");
+
+            builder.Property(p => p.CategoryId)
+                .HasColumnType("UUID")
+                .HasColumnName("category_id");
+
+            builder.Property(p => p.ProductAttributeId)
+                .HasColumnType("UUID")
+                .HasColumnName("product_attribute_id");
+
+            builder.HasOne(p => p.Manufacture)
+                .WithMany()
+                .HasForeignKey(p => p.ManufactureId);
+
+            builder.HasOne(p => p.ProductAttribute)
+                .WithMany()
+                .HasForeignKey(p => p.ProductAttributeId);
+
+            builder.HasMany(p => p.ProductStocks)
+                .WithOne()
+                .HasForeignKey("ProductId");
+
+            builder.HasMany(p => p.Categories)
+                .WithMany("Products");
+
+            builder.HasMany(p => p.ProductAttributes)
+                .WithOne()
+                .HasForeignKey("ProductId");
+
+            builder.HasMany(p => p.ProductPrices)
+                .WithOne()
+                .HasForeignKey("ProductId");
         }
     }
 }

@@ -43,6 +43,11 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnType("TIMESTAMP")
                 .HasColumnName("last_updated_date")
                 .IsRequired();
+
+            builder.Property(c => c.StoreBranchId)
+                .HasColumnType("UUID")
+                .HasColumnName("store_branch_id")
+                .IsRequired();
         }
     }
 }

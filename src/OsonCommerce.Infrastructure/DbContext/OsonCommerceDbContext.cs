@@ -17,7 +17,7 @@ namespace OsonCommerce.Infrastructure
         public DbSet<ProductInStock> ProductInStocks { get; set; }
         public DbSet<Provider> Providers { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<CashboxOperation> Transactions { get; set; }
+        public DbSet<CashboxOperation> CashboxOperations { get; set; }
         public DbSet<Cashbox> Cashboxes { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)

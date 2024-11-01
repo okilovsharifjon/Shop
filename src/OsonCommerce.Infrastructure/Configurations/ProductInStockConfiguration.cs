@@ -51,6 +51,27 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnType("TIMESTAMP")
                 .HasColumnName("last_updated")
                 .IsRequired();
+
+            builder.Property(c => c.ProductPriceId)
+                .HasColumnType("UUID")
+                .HasColumnName("product_price_id")
+                .IsRequired();
+
+            builder.HasOne(c => c.ProductPrice)
+                .WithMany()
+                .HasForeignKey(c => c.ProductPriceId);
+
+            builder.HasOne(c => c.Stock)
+                .WithMany()
+                .HasForeignKey(c => c.StockId);
+
+            builder.HasOne(c => c.Provider)
+                .WithMany()
+                .HasForeignKey(c => c.ProviderId);
+
+            builder.HasOne(c => c.Product)
+                .WithMany()
+                .HasForeignKey(c => c.ProductId);
         }
     }
 }

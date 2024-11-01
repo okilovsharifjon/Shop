@@ -28,7 +28,10 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnName("description")
                 .HasMaxLength(500);
 
-
+            builder.HasMany(c => c.Products)
+                .WithOne()
+                .HasForeignKey(p => p.CategoryId)
+                .IsRequired();
         }
     }
 }
