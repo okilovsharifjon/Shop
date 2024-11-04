@@ -1,6 +1,7 @@
 using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Domain.Entities;
 
 namespace OsonCommerce.Application.Features;
 
@@ -22,8 +23,13 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
         var employee = new Employee
         {
+            Id = Guid.NewGuid(),
             FirstName = request.FirstName,
             LastName = request.LastName,
+            PhoneNumber = request.PhoneNumber,
+            Email = request.Email,
+            IsActive = request.IsActive,
+            StoreBranchId = request.StoreBranchId
         };
 
         await _repository.CreateAsync(employee, cancellationToken);

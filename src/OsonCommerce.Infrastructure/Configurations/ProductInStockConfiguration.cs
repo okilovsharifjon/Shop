@@ -37,11 +37,6 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnName("quantity")
                 .IsRequired();
 
-            builder.Property(c => c.Price)
-                .HasColumnType("DECIMAL")
-                .HasColumnName("price")
-                .IsRequired();
-
             builder.Property(c => c.IsAvailable)
                 .HasColumnType("BOOLEAN")
                 .HasColumnName("is_available")

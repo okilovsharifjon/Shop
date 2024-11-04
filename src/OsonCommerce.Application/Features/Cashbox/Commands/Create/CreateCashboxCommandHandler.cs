@@ -31,7 +31,9 @@ namespace OsonCommerce.Application.Features
                 Balance = request.Balance,
                 Key = request.Key,
                 IsActive = true,
-                LastUpdatedDate = DateTime.UtcNow
+                LastUpdatedDate = DateTime.UtcNow,
+                StoreBranchId = request.StoreBranchId,
+                ChashierIds = request.ChashierIds
             };
 
             await _repository.CreateAsync(cashbox, cancellationToken);

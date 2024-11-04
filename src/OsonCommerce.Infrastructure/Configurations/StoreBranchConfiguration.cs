@@ -15,6 +15,10 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(sb => sb.ManagerIds)
+                .HasColumnName("manager_ids")
+                .IsRequired();
+
             builder.Property(sb => sb.Address)
                 .IsRequired()
                 .HasMaxLength(200);
@@ -30,12 +34,6 @@ namespace OsonCommerce.Infrastructure.Configurations
 
             builder.Property(sb => sb.IsActive)
                 .IsRequired();
-
-            builder.Property(sb => sb.NumberOfEmployees)
-                .IsRequired();
-
-            builder.HasMany(sb => sb.Managers)
-                .WithOne();
 
             builder.HasMany(sb => sb.Managers)
                 .WithOne();

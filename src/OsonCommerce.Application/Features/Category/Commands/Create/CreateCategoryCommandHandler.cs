@@ -23,6 +23,7 @@ public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryComman
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
         var category = new Category
         {
+            Id = Guid.NewGuid(),
             Name = request.Name,
             Description = request.Description
         };

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace OsonCommerce.Application.Features.Employee.Commands.Update;
+namespace OsonCommerce.Application.Features;
 
 public class UpdateEmployeeCommandValidator : AbstractValidator<UpdateEmployeeCommand>
 {

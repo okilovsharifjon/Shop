@@ -23,6 +23,14 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(c => c.ChashierIds)
+                .HasColumnName("chashier_ids")
+                .IsRequired();
+
+            builder.HasMany(c => c.Chashiers)
+                .WithMany()
+                .UsingEntity(j => j.ToTable("cashbox_chashier"));
+
             builder.Property(c => c.Key)
                 .HasColumnType("VARCHAR")
                 .HasColumnName("key")

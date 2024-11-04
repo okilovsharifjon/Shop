@@ -21,8 +21,17 @@ public class CreateStoreBranchCommandHandler : IRequestHandler<CreateStoreBranch
     public async Task<Guid> Handle(CreateStoreBranchCommand request, CancellationToken cancellationToken)
     {
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
-        // Implement the logic for creating a store branch
-        // ...
-        return Guid.NewGuid();
+        var storeBranch = new StoreBranch
+        {
+            Id = Guid.NewGuid(),
+            Name = request.Name,
+            Address = request.Address,
+            PhoneNumber = request.PhoneNumber,
+            Email = request.Email,
+            IsActive = request.IsActive,
+            OperatingHours = request.OperatingHours
+        };
+        await _repository.CreateAsync(storeBranch, cancellationToken);
+        return storeBranch.Id;
     }
 } 

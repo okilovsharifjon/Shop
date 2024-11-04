@@ -7,10 +7,10 @@ using OsonCommerce.Domain;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
-
+using System.Reflection;
 namespace OsonCommerce.Infrastructure
 {
-    public class OsonCommerceDbContext(DbContextOptions options)  : DbContext(options)
+    public class OsonCommerceDbContext(DbContextOptions options) : DbContext(options)
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<Stock> Stocks { get; set; }
@@ -19,26 +19,14 @@ namespace OsonCommerce.Infrastructure
         public DbSet<Category> Categories { get; set; }
         public DbSet<CashboxOperation> CashboxOperations { get; set; }
         public DbSet<Cashbox> Cashboxes { get; set; }
-        
+        public DbSet<ProductPrice> ProductPrices { get; set; }
+        public DbSet<PriceType> PriceTypes { get; set; }
+        public DbSet<ProductAttribute> ProductAttributes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfiguration(new ProductConfiguration());
-            modelBuilder.ApplyConfiguration(new StockConfiguration());
-            modelBuilder.ApplyConfiguration(new ProductInStockConfiguration());
-            modelBuilder.ApplyConfiguration(new ProviderConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new CashboxConfiguration());
-            modelBuilder.ApplyConfiguration(new ManufactureConfiguration());
-            modelBuilder.ApplyConfiguration(new CashboxOperationConfiguration());
-            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
-            modelBuilder.ApplyConfiguration(new StoreBranchConfiguration());
-
-            base.OnModelCreating(modelBuilder);
-            
-        }
-    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //{
-    //    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=catalog_service;Username=postgres;Password=admin;");
-    //}
+            => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=oson_commerce_dev;Username=postgres;Password=admin;");
+        //}
     }
 }

@@ -20,7 +20,6 @@ namespace OsonCommerce.Domain.Entities
         public Manufacture? Manufacture { get; set; }
         public ProductAttribute ProductAttribute { get; set; }
         public ICollection<ProductInStock> ProductStocks { get; set; }
-        public virtual ICollection<Category> Categories { get; set; } //TODO: Ask about this
         public virtual ICollection<ProductAttribute> ProductAttributes { get; set; }
         public virtual ICollection<ProductPrice> ProductPrices { get; set; }
     }

@@ -4,7 +4,7 @@ using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Interfaces;
 namespace OsonCommerce.Application.Features;
 
-public class GetAllManufacturesQueryHandler : IRequestHandler<GetAllManufacturesQuery, List<Manufacture>>
+public class GetAllManufacturesQueryHandler : IRequestHandler<GetAllManufacturesQuery, List<ManufactureDto>>
 {
     private readonly IRepository<Manufacture> _repository;
     private readonly IMapper _mapper;

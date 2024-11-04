@@ -1,6 +1,8 @@
 using MediatR;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Domain.Entities;
+
 
 namespace OsonCommerce.Application.Features;
 

@@ -9,9 +9,9 @@ namespace OsonCommerce.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<ProductPrice> builder)
         {
             builder.ToTable("product_price");
-            builder.HasKey(pp => pp.Id);
+            builder.HasKey(pp => pp.ProductPriceID);
 
-            builder.Property(pp => pp.Id)
+            builder.Property(pp => pp.ProductPriceID)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
                 .IsRequired()
@@ -22,16 +22,29 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnName("price")
                 .IsRequired();
 
-            builder.Property(pp => pp.Currency)
-                .HasColumnType("VARCHAR")
-                .HasColumnName("currency")
-                .IsRequired()
-                .HasMaxLength(3);
-
-            builder.Property(pp => pp.EffectiveDate)
-                .HasColumnType("TIMESTAMP")
-                .HasColumnName("effective_date")
+            builder.Property(pp => pp.ProductID)
+                .HasColumnName("product_id")
                 .IsRequired();
+
+            builder.Property(pp => pp.StockID)
+                .HasColumnName("warehouse_id")
+                .IsRequired();
+
+            builder.Property(pp => pp.PriceTypeID)
+                .HasColumnName("price_type_id")
+                .IsRequired();
+
+            builder.HasOne(pp => pp.Product)
+                .WithMany(p => p.ProductPrices)
+                .HasForeignKey(pp => pp.ProductID);
+
+            builder.HasOne(pp => pp.Stock)
+                .WithMany()
+                .HasForeignKey(pp => pp.StockID);
+
+            builder.HasOne(pp => pp.PriceType)
+                .WithMany()
+                .HasForeignKey(pp => pp.PriceTypeID);
         }
     }
 } 

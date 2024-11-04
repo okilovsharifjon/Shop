@@ -9,9 +9,9 @@ namespace OsonCommerce.Infrastructure.Configurations
         public void Configure(EntityTypeBuilder<ProductAttribute> builder)
         {
             builder.ToTable("product_attribute");
-            builder.HasKey(pa => pa.Id);
+            builder.HasKey(pa => pa.ProductAttributeID);
 
-            builder.Property(pa => pa.Id)
+            builder.Property(pa => pa.ProductAttributeID)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
                 .IsRequired()
@@ -23,10 +23,22 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(pa => pa.Value)
+            builder.Property(pa => pa.Color)
                 .HasColumnType("VARCHAR")
-                .HasColumnName("value")
-                .IsRequired()
+                .HasColumnName("color")
+                .IsRequired(false)
+                .HasMaxLength(100);
+
+            builder.Property(pa => pa.Memory)
+                .HasColumnType("VARCHAR")
+                .HasColumnName("memory")
+                .IsRequired(false)
+                .HasMaxLength(100);
+
+            builder.Property(pa => pa.Ram)
+                .HasColumnType("VARCHAR")
+                .HasColumnName("ram")
+                .IsRequired(false)
                 .HasMaxLength(100);
         }
     }

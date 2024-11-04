@@ -2,7 +2,7 @@ namespace OsonCommerce.Domain.Entities
 {
     public class PriceType
     {
-        public int PriceTypeID { get; set; }
+        public Guid PriceTypeID { get; set; }
         public string Name { get; set; } // Название типа цены, например "Первая категория", "Вторая категория"
         public string Description { get; set; }
 

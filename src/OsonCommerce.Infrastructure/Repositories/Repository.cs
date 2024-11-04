@@ -9,21 +9,21 @@ namespace OsonCommerce.Infrastructure.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly DbSet<T> _dbSet;
+        private readonly OsonCommerceDbContext  _context;
 
-        public Repository(DbContext context)
+        public Repository(OsonCommerceDbContext context)
         {
-            _dbSet = context.Set<T>();
+            _context = context;
         }
 
         public async Task<List<T>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            return await _dbSet.AsNoTracking().ToListAsync(cancellationToken);
+            return await _context.Set<T>().AsNoTracking().ToListAsync(cancellationToken);
         }
 
         public async Task<IEnumerable<T>> GetPagedAsync(int page, int pageSize)
         {
-            return await _dbSet
+            return await _context.Set<T>()
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
@@ -31,17 +31,17 @@ namespace OsonCommerce.Infrastructure.Repositories
 
         public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _dbSet.FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
+            return await _context.Set<T>().FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
         }
 
         public async Task<T> GetByIdAsNoTrackingAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
         }
 
         public async Task<Guid> CreateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            await _dbSet.AddAsync(entity, cancellationToken);
+            await _context.Set<T>().AddAsync(entity, cancellationToken);
             return entity.GetType().GetProperty("Id").GetValue(entity) as Guid? ?? Guid.Empty;
         }
 
@@ -50,13 +50,13 @@ namespace OsonCommerce.Infrastructure.Repositories
             var entity = await GetByIdAsync(id, cancellationToken);
             if (entity != null)
             {
-                _dbSet.Remove(entity);
+                _context.Set<T>().Remove(entity);
             }
         }
 
         public async Task<int> GetTotalCountAsync(CancellationToken cancellationToken = default)
         {
-            return await _dbSet.CountAsync(cancellationToken);
+            return await _context.Set<T>().CountAsync(cancellationToken);
         }
     }
 }

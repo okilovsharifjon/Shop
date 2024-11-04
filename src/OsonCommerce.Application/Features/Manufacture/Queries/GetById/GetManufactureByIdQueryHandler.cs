@@ -5,7 +5,7 @@ using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Application.Exceptions;
 namespace OsonCommerce.Application.Features;
 
-public class GetManufactureByIdQueryHandler : IRequestHandler<GetManufactureByIdQuery, Manufacture>
+public class GetManufactureByIdQueryHandler : IRequestHandler<GetManufactureByIdQuery, ManufactureDto>
 {
     private readonly IRepository<Manufacture> _repository;
     private readonly IMapper _mapper;

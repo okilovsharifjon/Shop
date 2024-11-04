@@ -19,7 +19,7 @@ public class UpdateManufactureCommandHandler : IRequestHandler<UpdateManufacture
         _validator = validator;
     }
 
-    public async Task<Unit> Handle(UpdateManufactureCommand request, CancellationToken cancellationToken)
+    public async Task Handle(UpdateManufactureCommand request, CancellationToken cancellationToken)
     {
         await _validator.ValidateAsync(request, cancellationToken);
         var manufacture = await _repository.GetByIdAsync(request.Id, cancellationToken);
@@ -36,7 +36,5 @@ public class UpdateManufactureCommandHandler : IRequestHandler<UpdateManufacture
         manufacture.IsActive = request.IsActive;
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
-
-        return Unit.Value;
     }
 }

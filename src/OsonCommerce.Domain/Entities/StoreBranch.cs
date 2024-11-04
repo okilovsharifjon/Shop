@@ -10,7 +10,6 @@ namespace OsonCommerce.Domain.Entities
         public string Email { get; set; }
         public bool IsActive { get; set; }
         public string OperatingHours { get; set; }
-        public int NumberOfEmployees { get; set; }
         public ICollection<Employee> Managers { get; set; }
     }
 }

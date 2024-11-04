@@ -29,8 +29,11 @@ public class UpdateStoreBranchCommandHandler : IRequestHandler<UpdateStoreBranch
         }
 
         storeBranch.Name = request.Name;
-        storeBranch.Location = request.Location;
-        storeBranch.Manager = request.Manager;
+        storeBranch.ManagerIds = request.ManagerIds;
+        storeBranch.Address = request.Address;
+        storeBranch.PhoneNumber = request.PhoneNumber;
+        storeBranch.OperatingHours = request.OperatingHours;
+        storeBranch.Email = request.Email;
         storeBranch.IsActive = request.IsActive;
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);

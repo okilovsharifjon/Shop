@@ -84,18 +84,15 @@ namespace OsonCommerce.Infrastructure.Configurations
 
             builder.HasMany(p => p.ProductStocks)
                 .WithOne()
-                .HasForeignKey("ProductId");
-
-            builder.HasMany(p => p.Categories)
-                .WithMany("Products");
+                .HasForeignKey("product_id");
 
             builder.HasMany(p => p.ProductAttributes)
                 .WithOne()
-                .HasForeignKey("ProductId");
+                .HasForeignKey("product_id");
 
             builder.HasMany(p => p.ProductPrices)
                 .WithOne()
-                .HasForeignKey("ProductId");
+                .HasForeignKey("product_id");
         }
     }
 }
