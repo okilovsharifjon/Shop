@@ -136,7 +136,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UUID", nullable: false),
-                    StoreBranchId = table.Column<Guid>(type: "uuid", nullable: true),
                     first_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
                     last_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
                     email = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
@@ -145,7 +144,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                     hire_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
                     is_active = table.Column<bool>(type: "BOOLEAN", nullable: false),
                     department = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
-                    StoreBranchId1 = table.Column<Guid>(type: "uuid", nullable: true)
+                    StoreBranchId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,11 +152,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                     table.ForeignKey(
                         name: "FK_employee_store_branch_StoreBranchId",
                         column: x => x.StoreBranchId,
-                        principalTable: "store_branch",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_employee_store_branch_StoreBranchId1",
-                        column: x => x.StoreBranchId1,
                         principalTable: "store_branch",
                         principalColumn: "Id");
                 });
@@ -395,11 +389,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                 name: "IX_employee_StoreBranchId",
                 table: "employee",
                 column: "StoreBranchId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_employee_StoreBranchId1",
-                table: "employee",
-                column: "StoreBranchId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_product_category_id",

@@ -29,7 +29,6 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
             PhoneNumber = request.PhoneNumber,
             Email = request.Email,
             IsActive = request.IsActive,
-            StoreBranchId = request.StoreBranchId
         };
 
         await _repository.CreateAsync(employee, cancellationToken);

@@ -51,10 +51,6 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnName("department")
                 .HasMaxLength(50);
 
-            builder.HasOne(e => e.StoreBranch)
-                .WithMany()
-                .HasForeignKey(e => e.StoreBranchId);
-
             builder.Property(e => e.HireDate)
                 .HasColumnType("TIMESTAMP")
                 .HasColumnName("hire_date")

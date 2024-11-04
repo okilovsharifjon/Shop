@@ -12,7 +12,7 @@ using OsonCommerce.Infrastructure;
 namespace OsonCommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(OsonCommerceDbContext))]
-    [Migration("20241104114029_InitialMigration")]
+    [Migration("20241104135407_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -213,14 +213,9 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.Property<Guid?>("StoreBranchId")
                         .HasColumnType("uuid");
 
-                    b.Property<Guid?>("StoreBranchId1")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
 
                     b.HasIndex("StoreBranchId");
-
-                    b.HasIndex("StoreBranchId1");
 
                     b.ToTable("employee", (string)null);
                 });
@@ -698,15 +693,9 @@ namespace OsonCommerce.Infrastructure.Migrations
 
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Employee", b =>
                 {
-                    b.HasOne("OsonCommerce.Domain.Entities.StoreBranch", "StoreBranch")
-                        .WithMany()
-                        .HasForeignKey("StoreBranchId");
-
                     b.HasOne("OsonCommerce.Domain.Entities.StoreBranch", null)
                         .WithMany("Managers")
-                        .HasForeignKey("StoreBranchId1");
-
-                    b.Navigation("StoreBranch");
+                        .HasForeignKey("StoreBranchId");
                 });
 
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Product", b =>
