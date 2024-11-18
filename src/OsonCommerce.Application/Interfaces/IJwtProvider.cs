@@ -9,6 +9,8 @@ namespace OsonCommerce.Application.Interfaces
 {
     public interface IJwtProvider
     {
+        //string GenerateToken(Employee employee);
+        //string GenerateToken(Customer customer);
         string GenerateToken(User user);
     }
 }

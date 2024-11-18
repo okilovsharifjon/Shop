@@ -19,6 +19,7 @@ builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOpti
 builder.Services.AddWebAuthentication(builder.Services.BuildServiceProvider().GetRequiredService<IOptions<JwtOptions>>());
 builder.Services.AddHttpContextAccessor();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

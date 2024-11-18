@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OsonCommerce.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+767726621e8f009d7deec2389acb96794299b4c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9676be899c40c56a4f6c7cee17b262043bcd3001")]
 [assembly: System.Reflection.AssemblyProductAttribute("OsonCommerce.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OsonCommerce.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

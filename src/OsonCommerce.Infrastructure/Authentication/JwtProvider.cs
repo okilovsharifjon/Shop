@@ -20,15 +20,30 @@ namespace OsonCommerce.Infrastructure.Authentication
         {
             _options = options.Value;
         }
+
         public string GenerateToken(User user)
         {
-            Claim[] claims = { new("userId", user.Id.ToString()) };
+            if (user == null) throw new ArgumentNullException(nameof(user));
+
+            Guid id = Guid.Empty;
+
+            if(user is Employee employee)
+            {
+                id = employee.Id;
+            }
+            else if(user is Customer customer)
+            {
+                id = customer.Id;
+            }
+
+            Claim[] claims = { new("userId", id.ToString()) };
 
             var signingCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecretKey)),
                 SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
+                claims: claims,
                 signingCredentials: signingCredentials,
                 expires: DateTime.UtcNow.AddHours(_options.ExpireHours));
 
