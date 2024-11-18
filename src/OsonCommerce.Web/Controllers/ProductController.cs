@@ -1,9 +1,11 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/product")]
 public class ProductController : ControllerBase
@@ -18,7 +20,7 @@ public class ProductController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateProductCommand command, CancellationToken cancellationToken)
     {
-        await _mediator.Send(command, cancellationToken);
+        var result =  await _mediator.Send(command, cancellationToken);
         return Ok();
     }
 
@@ -29,6 +31,7 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
+    [AllowAnonymous]
     [HttpGet("paged")]
     public async Task<IActionResult> GetPaged(GetPagedProductsQuery query, CancellationToken cancellationToken)
     {
@@ -36,6 +39,7 @@ public class ProductController : ControllerBase
         return Ok(result);
     }
 
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(GetProductByIdQuery query, CancellationToken cancellationToken)
     {

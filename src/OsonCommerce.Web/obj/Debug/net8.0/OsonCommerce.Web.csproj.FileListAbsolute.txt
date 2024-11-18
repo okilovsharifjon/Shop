@@ -57,3 +57,17 @@ E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonCommerce.Web.pdb
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonCommerce.Web.genruntimeconfig.cache
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\ref\OsonCommerce.Web.dll
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonCommerce.Web.MvcApplicationPartsAssemblyInfo.cs
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\BCrypt.Net-Next.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Bcl.TimeProvider.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll

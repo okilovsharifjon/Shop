@@ -6,6 +6,7 @@ using OsonCommerce.Application.Exceptions;
 using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features
 {

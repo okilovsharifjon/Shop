@@ -16,9 +16,6 @@ namespace OsonCommerce.Application.Features
 
             RuleFor(command => command.Balance)
                 .GreaterThanOrEqualTo(0).WithMessage("Balance must be a non-negative value.");
-
-            RuleFor(command => command.IsActive)
-                .NotNull().WithMessage("IsActive must be specified.");
         }
     }
 }

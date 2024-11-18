@@ -2,8 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Infrastructure.Repositories
 {
@@ -31,18 +31,24 @@ namespace OsonCommerce.Infrastructure.Repositories
 
         public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Set<T>().FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
+            return await _context.Set<T>().FindAsync(id, cancellationToken);
+        }
+        public async Task<T> GetByIdAsync(Guid id)
+        {
+            return await _context.Set<T>().FindAsync(id);
         }
 
         public async Task<T> GetByIdAsNoTrackingAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(e => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
+            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(e 
+            => e.GetType().GetProperty("Id").GetValue(e).Equals(id), cancellationToken);
         }
 
         public async Task<Guid> CreateAsync(T entity, CancellationToken cancellationToken = default)
         {
             await _context.Set<T>().AddAsync(entity, cancellationToken);
-            return entity.GetType().GetProperty("Id").GetValue(entity) as Guid? ?? Guid.Empty;
+            return entity.GetType().GetProperty("Id")
+            .GetValue(entity) as Guid? ?? Guid.Empty;
         }
 
         public async Task DeleteAsync(Guid id, CancellationToken cancellationToken = default)

@@ -4,6 +4,7 @@ using MediatR;
 using OsonCommerce.Domain.Entities;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features
 {
@@ -31,9 +32,9 @@ namespace OsonCommerce.Application.Features
                 Balance = request.Balance,
                 Key = request.Key,
                 IsActive = true,
-                LastUpdatedDate = DateTime.UtcNow,
+                LastUpdatedDate = DateTime.Now,
                 StoreBranchId = request.StoreBranchId,
-                ChashierIds = request.ChashierIds
+                CashierIds = request.ChashierIds
             };
 
             await _repository.CreateAsync(cashbox, cancellationToken);

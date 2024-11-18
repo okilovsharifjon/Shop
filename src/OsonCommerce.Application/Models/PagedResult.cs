@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace OsonCommerce.Application.Tools;
+namespace OsonCommerce.Application.Models;
 
 public class PagedResult<T>
 {

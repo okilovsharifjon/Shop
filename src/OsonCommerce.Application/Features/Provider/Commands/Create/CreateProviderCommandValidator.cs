@@ -11,7 +11,6 @@ namespace OsonCommerce.Application.Features
             RuleFor(command => command.Address).NotEmpty().WithMessage("Address is required.");
             RuleFor(command => command.Email).NotEmpty().EmailAddress().WithMessage("A valid email is required.");
             RuleFor(command => command.Description).NotEmpty().WithMessage("Description is required.");
-            RuleFor(command => command.IsActive).NotNull().WithMessage("IsActive status is required.");
         }
     }
 }

@@ -14,8 +14,7 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(c => c.Id)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(c => c.Name)
                 .HasColumnType("VARCHAR")

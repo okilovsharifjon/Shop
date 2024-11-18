@@ -22,6 +22,7 @@ namespace OsonCommerce.Infrastructure
         public DbSet<ProductPrice> ProductPrices { get; set; }
         public DbSet<PriceType> PriceTypes { get; set; }
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
+        public DbSet<Employee> Employees { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
             => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -1,9 +1,11 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/category")]
 public class CategoryController : ControllerBase
@@ -18,8 +20,8 @@ public class CategoryController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateCategoryCommand command, CancellationToken cancellationToken)
     {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
     }
 
     [HttpGet]
@@ -28,6 +30,7 @@ public class CategoryController : ControllerBase
         var result = await _mediator.Send(query, cancellationToken);
         return Ok(result);
     }
+
 
     [HttpGet("{id}")]
     public async Task<IActionResult> GetById(GetCategoryByIdQuery query, CancellationToken cancellationToken)

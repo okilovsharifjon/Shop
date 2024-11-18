@@ -1,4 +1,5 @@
 ﻿using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Application.Interfaces.Repositories;
 using OsonCommerce.Domain.Entities;
 using System;
 using System.Threading.Tasks;

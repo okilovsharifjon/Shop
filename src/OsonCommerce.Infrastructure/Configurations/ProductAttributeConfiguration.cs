@@ -14,13 +14,12 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(pa => pa.ProductAttributeID)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(pa => pa.Name)
                 .HasColumnType("VARCHAR")
                 .HasColumnName("name")
-                .IsRequired()
+                .IsRequired(false)
                 .HasMaxLength(100);
 
             builder.Property(pa => pa.Color)

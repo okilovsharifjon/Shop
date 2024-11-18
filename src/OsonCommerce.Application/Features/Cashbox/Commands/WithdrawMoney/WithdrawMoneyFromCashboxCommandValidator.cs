@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace OsonCommerce.Application.Features
 {
-    public class WithdrawMoneyCommandValidator : AbstractValidator<WithdrawMoneyCommand>
+    public class WithdrawMoneyFromCashboxCommandValidator : AbstractValidator<WithdrawMoneyFromCashboxCommand>
     {
-        public WithdrawMoneyCommandValidator()
+        public WithdrawMoneyFromCashboxCommandValidator()
         {
             RuleFor(command => command.Amount).GreaterThan(0);
             RuleFor(command => command.CashboxId).NotEmpty();

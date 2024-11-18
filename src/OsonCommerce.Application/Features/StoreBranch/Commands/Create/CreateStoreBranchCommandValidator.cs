@@ -24,9 +24,6 @@ public class CreateStoreBranchCommandValidator : AbstractValidator<CreateStoreBr
             .NotEmpty().WithMessage("Email is required.")
             .EmailAddress().WithMessage("Email is not valid.");
 
-        RuleFor(x => x.IsActive)
-            .NotNull().WithMessage("IsActive status is required.");
-
         RuleFor(x => x.OperatingHours)
             .NotEmpty().WithMessage("Operating hours are required.");
     }

@@ -9,6 +9,9 @@ using OsonCommerce.Domain.Entities;
 using OsonCommerce.Infrastructure.Repositories;
 using OsonCommerce.Application.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using OsonCommerce.Application.Interfaces.Repositories;
+using OsonCommerce.Infrastructure.Authentication;
+using Microsoft.Extensions.Options;
 
 namespace OsonCommerce.Infrastructure
 {
@@ -27,7 +30,19 @@ namespace OsonCommerce.Infrastructure
             services.AddScoped<IRepository<ProductInStock>, Repository<ProductInStock>>();
             services.AddScoped<IRepository<Provider>, Repository<Provider>>();
             services.AddScoped<IRepository<StoreBranch>, Repository<StoreBranch>>();
-            
+            services.AddScoped<IRepository<CashboxOperation>, Repository<CashboxOperation>>();
+            services.AddScoped<ICashboxRepository, CashboxRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IJwtProvider, JwtProvider>();
+
+            var jwtOptions = new JwtOptions();
+            configuration.GetSection(nameof(JwtOptions)).Bind(jwtOptions);
+            services.Configure<JwtOptions>(options => 
+            {
+                options.ExpireHours = jwtOptions.ExpireHours;
+                options.SecretKey = jwtOptions.SecretKey;
+            });
 
             services.AddDbContext<OsonCommerceDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
             return services;

@@ -1,9 +1,13 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers
 {
+    [Authorize]
+    [ApiController]
+    [Route("api/product_in_stock")]
     public class ProductInStockController : ControllerBase
     {
         private readonly IMediator _mediator;
@@ -19,6 +23,7 @@ namespace OsonCommerce.Web.Controllers
             return Ok(result);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductInStockById([FromRoute] GetProductInStockByIdQuery query, CancellationToken cancellationToken)
         {
@@ -46,5 +51,6 @@ namespace OsonCommerce.Web.Controllers
             var result = await _mediator.Send(query, cancellationToken);
             return Ok(result);
         }
+        //todo: add getpaged method
     }
 }

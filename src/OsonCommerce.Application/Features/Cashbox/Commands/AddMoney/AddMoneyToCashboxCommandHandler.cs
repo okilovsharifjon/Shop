@@ -4,18 +4,22 @@ using System.Net.NetworkInformation;
 using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Domain.Enums;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features
 {
     public class AddMoneyToCashboxCommandHandler : IRequestHandler<AddMoneyToCashboxCommand>
     {
-        private readonly IRepository<Cashbox> _repository;
+        private readonly ICashboxRepository _cashboxRepository;
+        private readonly IRepository<CashboxOperation> _operationRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IValidator<AddMoneyToCashboxCommand> _validator;
 
-        public AddMoneyToCashboxCommandHandler(IRepository<Cashbox> repository, IUnitOfWork unitOfWork, IValidator<AddMoneyToCashboxCommand> validator)
+        public AddMoneyToCashboxCommandHandler(ICashboxRepository cahboxRepository, IRepository<CashboxOperation> operationRepository, IUnitOfWork unitOfWork, IValidator<AddMoneyToCashboxCommand> validator)
         {
-            _repository = repository;
+            _cashboxRepository = cahboxRepository;
+            _operationRepository = operationRepository;
             _unitOfWork = unitOfWork;
             _validator = validator;
         }
@@ -23,11 +27,22 @@ namespace OsonCommerce.Application.Features
         public async Task Handle(AddMoneyToCashboxCommand request, CancellationToken cancellationToken)
         {
             await _validator.ValidateAsync(request, cancellationToken);
-            var cashbox = await _repository.GetByIdAsync(request.CashboxId, cancellationToken);
+            var cashbox = await _cashboxRepository.GetCashboxWithDetailsAsync(request.CashboxId, cancellationToken);
             if (cashbox == null)
             {
                 throw new NotFoundException("Cashbox not found");
             }
+
+            var operation = new CashboxOperation
+            {
+                Id = Guid.NewGuid(),
+                Amount = request.Amount,
+                CashboxId = request.CashboxId,
+                Date = DateTime.Now,
+                Description = "description",
+                Status = TransactionStatus.Failed,
+                TransactionType = TransactionType.Deposit
+            };
 
             try
             {
@@ -51,6 +66,7 @@ namespace OsonCommerce.Application.Features
                 {
                     cashbox.Balance += request.Amount;
                     await _unitOfWork.SaveChangesAsync();
+                    operation.Status = TransactionStatus.Completed;
                 }
             }
             catch (NetworkException)
@@ -71,6 +87,10 @@ namespace OsonCommerce.Application.Features
             }
             catch (Exception)
             {
+            }
+            finally
+            {
+                _operationRepository.CreateAsync(operation, cancellationToken);
             }
         }
         

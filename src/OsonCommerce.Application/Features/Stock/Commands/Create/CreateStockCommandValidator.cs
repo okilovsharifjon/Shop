@@ -12,7 +12,6 @@ namespace OsonCommerce.Application.Features
             RuleFor(command => command.Capacity).GreaterThan(0);
             RuleFor(command => command.CurrentLoad).GreaterThanOrEqualTo(0);
             RuleFor(command => command.PhoneNumber).Matches(@"^\+?[1-9]\d{1,14}$"); // Example regex for phone numbers
-            RuleFor(command => command.IsAvailable).NotNull();
         }
     }
 }

@@ -15,8 +15,7 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(s => s.Id)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(s => s.Name)
                 .HasColumnType("VARCHAR")
@@ -51,7 +50,8 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(s => s.IsAvailable)
                 .HasColumnType("BOOLEAN")
                 .HasColumnName("is_available")
-                .IsRequired();
+                .IsRequired()
+                .HasDefaultValue(true);
         }
     }
 }

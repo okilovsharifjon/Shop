@@ -1,8 +1,8 @@
 using AutoMapper;
 using MediatR;
 using OsonCommerce.Domain.Entities;
-using OsonCommerce.Application.Interfaces;
-using OsonCommerce.Application.Tools;
+using OsonCommerce.Application.Models;
+using OsonCommerce.Application.Interfaces.Repositories;
 namespace OsonCommerce.Application.Features
 {
     public class GetPagedProductsQueryHandler : IRequestHandler<GetPagedProductsQuery, PagedResult<ProductDto>>

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OsonCommerce.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60e7acbdc5b26759d381e74f48b57d8a2632b73a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+767726621e8f009d7deec2389acb96794299b4c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("OsonCommerce.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OsonCommerce.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace OsonCommerce.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitialMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -113,7 +113,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                 {
                     id = table.Column<Guid>(type: "UUID", nullable: false),
                     store_branch_id = table.Column<Guid>(type: "UUID", nullable: false),
-                    chashier_ids = table.Column<Guid[]>(type: "uuid[]", nullable: false),
+                    cashier_ids = table.Column<Guid[]>(type: "uuid[]", nullable: false),
                     name = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
                     key = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
                     balance = table.Column<decimal>(type: "DECIMAL", nullable: false),
@@ -136,15 +136,16 @@ namespace OsonCommerce.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UUID", nullable: false),
+                    position = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
+                    hire_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false),
+                    department = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: true),
+                    StoreBranchId = table.Column<Guid>(type: "uuid", nullable: true),
                     first_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
                     last_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
                     email = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
                     phone_number = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
-                    position = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
-                    hire_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
-                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false),
-                    department = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
-                    StoreBranchId = table.Column<Guid>(type: "uuid", nullable: true)
+                    password = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -157,24 +158,24 @@ namespace OsonCommerce.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "cashbox_chashier",
+                name: "cashbox_cashier",
                 columns: table => new
                 {
                     CashboxId = table.Column<Guid>(type: "UUID", nullable: false),
-                    ChashiersId = table.Column<Guid>(type: "UUID", nullable: false)
+                    CashiersId = table.Column<Guid>(type: "UUID", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_cashbox_chashier", x => new { x.CashboxId, x.ChashiersId });
+                    table.PrimaryKey("PK_cashbox_cashier", x => new { x.CashboxId, x.CashiersId });
                     table.ForeignKey(
-                        name: "FK_cashbox_chashier_cashbox_CashboxId",
+                        name: "FK_cashbox_cashier_cashbox_CashboxId",
                         column: x => x.CashboxId,
                         principalTable: "cashbox",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_cashbox_chashier_employee_ChashiersId",
-                        column: x => x.ChashiersId,
+                        name: "FK_cashbox_cashier_employee_CashiersId",
+                        column: x => x.CashiersId,
                         principalTable: "employee",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
@@ -184,11 +185,11 @@ namespace OsonCommerce.Infrastructure.Migrations
                 name: "cashbox_operation",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    CashboxId = table.Column<Guid>(type: "UUID", nullable: false),
-                    EmployeeId = table.Column<Guid>(type: "UUID", nullable: false),
+                    id = table.Column<Guid>(type: "UUID", nullable: false),
+                    cashbox_id = table.Column<Guid>(type: "UUID", nullable: false),
+                    employee_id = table.Column<Guid>(type: "UUID", nullable: false),
                     amount = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
-                    date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
                     description = table.Column<string>(type: "VARCHAR", maxLength: 500, nullable: false),
                     transaction_type = table.Column<int>(type: "integer", nullable: false),
                     status = table.Column<int>(type: "integer", nullable: false),
@@ -196,21 +197,21 @@ namespace OsonCommerce.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_cashbox_operation", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_cashbox_operation_cashbox_CashboxId",
-                        column: x => x.CashboxId,
-                        principalTable: "cashbox",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Restrict);
+                    table.PrimaryKey("PK_cashbox_operation", x => x.id);
                     table.ForeignKey(
                         name: "FK_cashbox_operation_cashbox_CashboxId1",
                         column: x => x.CashboxId1,
                         principalTable: "cashbox",
                         principalColumn: "id");
                     table.ForeignKey(
-                        name: "FK_cashbox_operation_employee_EmployeeId",
-                        column: x => x.EmployeeId,
+                        name: "FK_cashbox_operation_cashbox_cashbox_id",
+                        column: x => x.cashbox_id,
+                        principalTable: "cashbox",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_cashbox_operation_employee_employee_id",
+                        column: x => x.employee_id,
                         principalTable: "employee",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Restrict);
@@ -255,7 +256,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UUID", nullable: false),
-                    name = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
+                    name = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: true),
                     color = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: true),
                     memory = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: true),
                     ram = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: true),
@@ -366,14 +367,14 @@ namespace OsonCommerce.Infrastructure.Migrations
                 column: "store_branch_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cashbox_chashier_ChashiersId",
-                table: "cashbox_chashier",
-                column: "ChashiersId");
+                name: "IX_cashbox_cashier_CashiersId",
+                table: "cashbox_cashier",
+                column: "CashiersId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cashbox_operation_CashboxId",
+                name: "IX_cashbox_operation_cashbox_id",
                 table: "cashbox_operation",
-                column: "CashboxId");
+                column: "cashbox_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_cashbox_operation_CashboxId1",
@@ -381,9 +382,9 @@ namespace OsonCommerce.Infrastructure.Migrations
                 column: "CashboxId1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_cashbox_operation_EmployeeId",
+                name: "IX_cashbox_operation_employee_id",
                 table: "cashbox_operation",
-                column: "EmployeeId");
+                column: "employee_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_employee_StoreBranchId",
@@ -479,7 +480,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                 table: "product");
 
             migrationBuilder.DropTable(
-                name: "cashbox_chashier");
+                name: "cashbox_cashier");
 
             migrationBuilder.DropTable(
                 name: "cashbox_operation");

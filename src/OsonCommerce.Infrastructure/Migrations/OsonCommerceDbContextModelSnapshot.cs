@@ -27,14 +27,14 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.Property<Guid>("CashboxId")
                         .HasColumnType("UUID");
 
-                    b.Property<Guid>("ChashiersId")
+                    b.Property<Guid>("CashiersId")
                         .HasColumnType("UUID");
 
-                    b.HasKey("CashboxId", "ChashiersId");
+                    b.HasKey("CashboxId", "CashiersId");
 
-                    b.HasIndex("ChashiersId");
+                    b.HasIndex("CashiersId");
 
-                    b.ToTable("cashbox_chashier", (string)null);
+                    b.ToTable("cashbox_cashier", (string)null);
                 });
 
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Cashbox", b =>
@@ -48,10 +48,10 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnType("DECIMAL")
                         .HasColumnName("balance");
 
-                    b.Property<Guid[]>("ChashierIds")
+                    b.Property<Guid[]>("CashierIds")
                         .IsRequired()
                         .HasColumnType("uuid[]")
-                        .HasColumnName("chashier_ids");
+                        .HasColumnName("cashier_ids");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("BOOLEAN")
@@ -88,20 +88,22 @@ namespace OsonCommerce.Infrastructure.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("UUID")
+                        .HasColumnName("id");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("amount");
 
                     b.Property<Guid>("CashboxId")
-                        .HasColumnType("UUID");
+                        .HasColumnType("UUID")
+                        .HasColumnName("cashbox_id");
 
                     b.Property<Guid?>("CashboxId1")
                         .HasColumnType("UUID");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("TIMESTAMP")
                         .HasColumnName("date");
 
                     b.Property<string>("Description")
@@ -111,7 +113,8 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("description");
 
                     b.Property<Guid>("EmployeeId")
-                        .HasColumnType("UUID");
+                        .HasColumnType("UUID")
+                        .HasColumnName("employee_id");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer")
@@ -164,7 +167,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<string>("Department")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("department");
@@ -194,6 +196,11 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("last_name");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("password");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -381,7 +388,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("memory");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("VARCHAR")
                         .HasColumnName("name");
@@ -649,7 +655,7 @@ namespace OsonCommerce.Infrastructure.Migrations
 
                     b.HasOne("OsonCommerce.Domain.Entities.Employee", null)
                         .WithMany()
-                        .HasForeignKey("ChashiersId")
+                        .HasForeignKey("CashiersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

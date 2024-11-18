@@ -1,17 +1,45 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
+using Microsoft.AspNetCore.Http;
 
 namespace OsonCommerce.Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/employee")]
     public class EmployeeController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public EmployeeController(IMediator mediator)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public EmployeeController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
             _mediator = mediator;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        [AllowAnonymous]
+        [Route("register")]
+        [HttpPost]
+        public async Task<IActionResult> Register([FromBody] RegisterEmployeeCommand command, CancellationToken cancellationToken)
+        {
+            await _mediator.Send(command, cancellationToken);
+            return Ok();
+        }
+
+        [AllowAnonymous]
+        [Route("login")]
+        [HttpPost]
+        public async Task<IActionResult> Login(
+            [FromBody] LoginEmployeeCommand command, 
+            CancellationToken cancellationToken
+            )
+        {
+            var token = await _mediator.Send(command, cancellationToken);
+            _httpContextAccessor.HttpContext.Response.Cookies.Append("delicious-cookies", token);
+            return Ok(token);
         }
 
         [HttpPost]
@@ -20,6 +48,7 @@ namespace OsonCommerce.Web.Controllers
             var result = await _mediator.Send(command, cancellationToken);
             return Ok(result);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEmployeeById([FromRoute] GetEmployeeByIdQuery query, CancellationToken cancellationToken)

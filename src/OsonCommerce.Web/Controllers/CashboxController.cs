@@ -1,9 +1,11 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/cashbox")]
 public class CashboxController : ControllerBase
@@ -38,6 +40,22 @@ public class CashboxController : ControllerBase
 
     [HttpPut]
     public async Task<IActionResult> UpdateCashbox(UpdateCashboxCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    [Route("add")]
+    [HttpPut]
+    public async Task<IActionResult> AddMoney(AddMoneyToCashboxCommand command, CancellationToken cancellationToken)
+    {
+        await _mediator.Send(command, cancellationToken);
+        return Ok();
+    }
+
+    [Route("withdraw")]
+    [HttpPut]
+    public async Task<IActionResult> WithdrawMoney(WithdrawMoneyFromCashboxCommand command, CancellationToken cancellationToken)
     {
         await _mediator.Send(command, cancellationToken);
         return Ok();

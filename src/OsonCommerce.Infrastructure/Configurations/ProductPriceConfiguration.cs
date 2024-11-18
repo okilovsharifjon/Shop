@@ -14,8 +14,7 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(pp => pp.ProductPriceID)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(pp => pp.Price)
                 .HasColumnType("DECIMAL")

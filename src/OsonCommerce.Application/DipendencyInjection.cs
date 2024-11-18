@@ -27,7 +27,7 @@ namespace OsonCommerce.Application
                 {
                     services.AddValidatorsFromAssembly(assembly);
                 }
-                catch { } // Skip if any exception
+                catch { } 
             }
             return services;
         }

@@ -1,3 +1,4 @@
+using OsonCommerce.Application.Interfaces.Repositories;
 using OsonCommerce.Domain.Entities;
 
 namespace OsonCommerce.Application.Interfaces

@@ -2,6 +2,7 @@ using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
@@ -29,9 +30,11 @@ public class CreateStoreBranchCommandHandler : IRequestHandler<CreateStoreBranch
             PhoneNumber = request.PhoneNumber,
             Email = request.Email,
             IsActive = request.IsActive,
-            OperatingHours = request.OperatingHours
+            OperatingHours = request.OperatingHours,
+            ManagerIds = request.ManagerIds
         };
         await _repository.CreateAsync(storeBranch, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
         return storeBranch.Id;
     }
 } 

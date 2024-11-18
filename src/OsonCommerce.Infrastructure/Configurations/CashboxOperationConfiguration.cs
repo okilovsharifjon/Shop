@@ -11,12 +11,28 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.ToTable("cashbox_operation");
             builder.HasKey(t => t.Id);
 
+            builder.Property(c => c.Id)
+                .HasColumnType("UUID")
+                .HasColumnName("id")
+                .IsRequired();
+
+            builder.Property(c => c.CashboxId)
+                .HasColumnType("UUID")
+                .HasColumnName("cashbox_id")
+                .IsRequired();
+
+            builder.Property(c => c.EmployeeId)
+                .HasColumnType("UUID")
+                .HasColumnName("employee_id")
+                .IsRequired();
+
             builder.Property(t => t.Amount)
                 .HasColumnType("decimal(18,2)")
                 .HasColumnName("amount")
                 .IsRequired();
 
             builder.Property(t => t.Date)
+                .HasColumnType("TIMESTAMP")
                 .HasColumnName("date")
                 .IsRequired();
 

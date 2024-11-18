@@ -3,6 +3,7 @@ using OsonCommerce.Domain.Entities;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 

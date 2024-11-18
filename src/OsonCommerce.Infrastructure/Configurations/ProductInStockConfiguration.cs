@@ -14,8 +14,7 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(c => c.Id)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(c => c.ProductId)
                 .HasColumnType("UUID")
@@ -40,7 +39,8 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(c => c.IsAvailable)
                 .HasColumnType("BOOLEAN")
                 .HasColumnName("is_available")
-                .IsRequired();
+                .IsRequired()
+                .HasDefaultValue(true);
 
             builder.Property(c => c.LastUpdated)
                 .HasColumnType("TIMESTAMP")

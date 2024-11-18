@@ -1,9 +1,11 @@
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/stock")]
 public class StockController : ControllerBase
@@ -18,8 +20,8 @@ public class StockController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Create(CreateStockCommand command, CancellationToken cancellationToken)
     {
-        await _mediator.Send(command, cancellationToken);
-        return Ok();
+        var result = await _mediator.Send(command, cancellationToken);
+        return Ok(result);
     }
 
     [HttpGet]

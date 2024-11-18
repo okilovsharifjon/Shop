@@ -2,6 +2,7 @@ using OsonCommerce.Domain.Entities;
 using MediatR;
 using OsonCommerce.Application.Interfaces;
 using FluentValidation;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 

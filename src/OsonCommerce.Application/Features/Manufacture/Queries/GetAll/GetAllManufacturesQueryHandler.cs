@@ -1,7 +1,7 @@
 using MediatR;
 using AutoMapper;
 using OsonCommerce.Domain.Entities;
-using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Application.Interfaces.Repositories;
 namespace OsonCommerce.Application.Features;
 
 public class GetAllManufacturesQueryHandler : IRequestHandler<GetAllManufacturesQuery, List<ManufactureDto>>

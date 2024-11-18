@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/manufacture")]
     public class ManufactureController : ControllerBase
@@ -20,6 +22,7 @@ namespace OsonCommerce.Web.Controllers
             var result = await _mediator.Send(command, cancellationToken);
             return Ok(result);
         }
+
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetManufactureById([FromRoute] GetManufactureByIdQuery query, CancellationToken cancellationToken)

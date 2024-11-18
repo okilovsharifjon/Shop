@@ -2,6 +2,7 @@ using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
@@ -28,6 +29,8 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
             LastName = request.LastName,
             PhoneNumber = request.PhoneNumber,
             Email = request.Email,
+            Position = request.Position,
+            Department = request.Department,
             IsActive = request.IsActive,
         };
 

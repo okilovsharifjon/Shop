@@ -1,8 +1,8 @@
 using MediatR;
 using AutoMapper;
-using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
 using System.Collections.Generic;
+using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 

@@ -1,9 +1,11 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/storebranch")]
     public class StoreBranchController : ControllerBase 

@@ -11,6 +11,5 @@ public class CreateProductInStockCommandValidator : AbstractValidator<CreateProd
         RuleFor(x => x.ProductPriceId).NotEmpty();
         RuleFor(x => x.ProviderId).NotEmpty();
         RuleFor(x => x.Quantity).GreaterThanOrEqualTo(0);
-        RuleFor(x => x.IsAvailable).NotEmpty();
     }
 }

@@ -14,8 +14,7 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(c => c.Id)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
-                .IsRequired()
-                .ValueGeneratedOnAdd();
+                .IsRequired();
 
             builder.Property(c => c.Name)
                 .HasColumnType("VARCHAR")
@@ -23,13 +22,14 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(c => c.ChashierIds)
-                .HasColumnName("chashier_ids")
+            builder.Property(c => c.CashierIds)
+                .HasColumnType("uuid[]")
+                .HasColumnName("cashier_ids")
                 .IsRequired();
 
-            builder.HasMany(c => c.Chashiers)
+            builder.HasMany(c => c.Cashiers)
                 .WithMany()
-                .UsingEntity(j => j.ToTable("cashbox_chashier"));
+                .UsingEntity(j => j.ToTable("cashbox_cashier"));
 
             builder.Property(c => c.Key)
                 .HasColumnType("VARCHAR")
@@ -45,7 +45,8 @@ namespace OsonCommerce.Infrastructure.Configurations
             builder.Property(c => c.IsActive)
                 .HasColumnType("BOOLEAN")
                 .HasColumnName("is_active")
-                .IsRequired();
+                .IsRequired()
+                .HasDefaultValue(true);
 
             builder.Property(c => c.LastUpdatedDate)
                 .HasColumnType("TIMESTAMP")
@@ -56,6 +57,7 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasColumnType("UUID")
                 .HasColumnName("store_branch_id")
                 .IsRequired();
+                
         }
     }
 }
