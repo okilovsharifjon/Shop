@@ -9,10 +9,10 @@ namespace OsonCommerce.Application.Features;
 
 public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeDto>
 {
-    private readonly IRepository<Employee> _repository;
+    private readonly IEmployeeRepository _repository;
     private readonly IMapper _mapper;
 
-    public GetEmployeeByIdQueryHandler(IRepository<Employee> repository, IMapper mapper)
+    public GetEmployeeByIdQueryHandler(IEmployeeRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;   

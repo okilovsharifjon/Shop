@@ -9,8 +9,8 @@ E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.A
 E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Application.pdb
 E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Domain.dll
 E:\MyProjects\Store\src\OsonCommerce.Application\bin\Debug\net8.0\OsonCommerce.Domain.pdb
-E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.csproj.CopyComplete
 E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.dll
 E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\refint\OsonCommerce.Application.dll
 E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonCommerce.Application.pdb
 E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\ref\OsonCommerce.Application.dll
+E:\MyProjects\Store\src\OsonCommerce.Application\obj\Debug\net8.0\OsonComm.D576F5E1.Up2Date

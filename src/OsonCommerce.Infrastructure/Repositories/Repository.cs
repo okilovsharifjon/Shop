@@ -29,10 +29,16 @@ namespace OsonCommerce.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async virtual Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             return await _context.Set<T>().FindAsync(id, cancellationToken);
         }
+
+        public async virtual Task<T> GetByIdAsync(int id, CancellationToken cancellationToken = default)
+        {
+            return await _context.Set<T>().FindAsync(id, cancellationToken);
+        }
+
         public async Task<T> GetByIdAsync(Guid id)
         {
             return await _context.Set<T>().FindAsync(id);

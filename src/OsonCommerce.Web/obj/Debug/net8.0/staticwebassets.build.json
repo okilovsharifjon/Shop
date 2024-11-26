@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "cFFxc1/eHtT05zQG7y8q/i6xMP1iMSNZg7N7T0exgkY=",
+  "Hash": "yxkhCDSu5iKT260aMN3yb+Azas0P4PGi2ozU9xrUe+c=",
   "Source": "OsonCommerce.Web",
   "BasePath": "_content/OsonCommerce.Web",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace OsonCommerce.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Manager")]
     [ApiController]
     [Route("api/employee")]
     public class EmployeeController : ControllerBase

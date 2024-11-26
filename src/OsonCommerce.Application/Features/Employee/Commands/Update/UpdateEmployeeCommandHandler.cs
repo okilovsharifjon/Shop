@@ -9,11 +9,11 @@ namespace OsonCommerce.Application.Features;
 
 public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand>
 {
-    private readonly IRepository<Employee> _repository;
+    private readonly IEmployeeRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IValidator<UpdateEmployeeCommand> _validator;
 
-    public UpdateEmployeeCommandHandler(IRepository<Employee> repository, IUnitOfWork unitOfWork, IValidator<UpdateEmployeeCommand> validator)
+    public UpdateEmployeeCommandHandler(IEmployeeRepository repository, IUnitOfWork unitOfWork, IValidator<UpdateEmployeeCommand> validator)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
@@ -34,7 +34,6 @@ public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeComman
         employee.Email = request.Email;
         employee.PhoneNumber = request.PhoneNumber;
         employee.Position = request.Position;
-        employee.HireDate = request.HireDate;
         employee.IsActive = request.IsActive;
         employee.Department = request.Department;
 

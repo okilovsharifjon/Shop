@@ -61,7 +61,7 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .IsRequired();
 
             builder.Property(p => p.UpdatedAt)
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMP WITH TIME ZONE")
                 .HasColumnName("updated_at")
                 .IsRequired();
 

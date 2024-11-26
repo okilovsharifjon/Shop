@@ -10,8 +10,6 @@ namespace OsonCommerce.Infrastructure.Configurations
         {
             builder.ToTable("employee");
 
-            builder.HasKey(e => e.Id);
-
             builder.Property(e => e.Id)
                 .HasColumnType("UUID")
                 .HasColumnName("id")
@@ -51,7 +49,7 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasMaxLength(50);
 
             builder.Property(e => e.HireDate)
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMP WITH TIME ZONE")
                 .HasColumnName("hire_date")
                 .IsRequired();
 

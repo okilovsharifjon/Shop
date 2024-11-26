@@ -8,6 +8,9 @@ using OsonCommerce.Domain.Entities;
 using OsonCommerce.Infrastructure.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using OsonCommerce.Infrastructure.Authorization;
+using OsonCommerce.Infrastructure.Authentication;
+
 namespace OsonCommerce.Infrastructure
 {
     public class OsonCommerceDbContext(DbContextOptions options) : DbContext(options)
@@ -23,8 +26,43 @@ namespace OsonCommerce.Infrastructure
         public DbSet<PriceType> PriceTypes { get; set; }
         public DbSet<ProductAttribute> ProductAttributes { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-            => modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            SeedAdminData(modelBuilder);
+        }
+
+        private void SeedAdminData(ModelBuilder modelBuilder)
+        {
+            var roleId = 1;
+            var adminId = Guid.NewGuid();
+
+            modelBuilder.Entity<Employee>().HasData(new Employee
+            {
+                Id = adminId,
+                FirstName = "Admin",
+                LastName = "Admin",
+                Password = Convert.ToString(new PasswordHasher().Generate("Admin123$")),
+                Email = "adminadmin@gmail.com",
+                HireDate = DateTime.UtcNow,
+                PhoneNumber = "+992-00-000-00-00",
+                Department = "Admin",
+                IsActive = true,
+                Position = "Admin",
+            });
+
+            modelBuilder.Entity<UserRole>().HasData(new UserRole
+            {
+                RoleId = roleId,
+                UserId = adminId
+            });
+        }
+
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
         //    optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=oson_commerce_dev;Username=postgres;Password=admin;");

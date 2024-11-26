@@ -10,10 +10,10 @@ namespace OsonCommerce.Application.Features
 {
     public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand>
     {
-        private readonly IRepository<Product> _productRepository;
+        private readonly IProductRepository _productRepository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteProductCommandHandler(IRepository<Product> productRepository, IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IProductRepository productRepository, IUnitOfWork unitOfWork)
         {
             _productRepository = productRepository;
             _unitOfWork = unitOfWork;

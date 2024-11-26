@@ -3,6 +3,7 @@ namespace OsonCommerce.Application.Interfaces.Repositories
     public interface IRepository<T> where T : class
     {
         Task<T> GetByIdAsync(Guid id, CancellationToken cancellationToken);
+        Task<T> GetByIdAsync(int id, CancellationToken cancellationToken);
         Task<T> GetByIdAsync(Guid id);
         Task<T> GetByIdAsNoTrackingAsync(Guid id, CancellationToken cancellationToken);
         Task<List<T>> GetAllAsync(CancellationToken cancellationToken);

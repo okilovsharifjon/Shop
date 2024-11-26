@@ -12,9 +12,9 @@ E:\MyProjects\Store\src\OsonCommerce.Infrastructure\bin\Debug\net8.0\OsonCommerc
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\bin\Debug\net8.0\OsonCommerce.Domain.dll
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\bin\Debug\net8.0\OsonCommerce.Application.pdb
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\bin\Debug\net8.0\OsonCommerce.Domain.pdb
-E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\OsonCommerce.Infrastructure.csproj.CopyComplete
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\OsonCommerce.Infrastructure.dll
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\refint\OsonCommerce.Infrastructure.dll
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\OsonCommerce.Infrastructure.pdb
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\OsonCommerce.Infrastructure.genruntimeconfig.cache
 E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\ref\OsonCommerce.Infrastructure.dll
+E:\MyProjects\Store\src\OsonCommerce.Infrastructure\obj\Debug\net8.0\OsonComm.00F591B0.Up2Date

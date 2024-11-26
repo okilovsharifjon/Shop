@@ -49,7 +49,7 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .HasDefaultValue(true);
 
             builder.Property(c => c.LastUpdatedDate)
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMP WITH TIME ZONE")
                 .HasColumnName("last_updated_date")
                 .IsRequired();
 

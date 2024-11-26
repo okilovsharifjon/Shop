@@ -10,9 +10,9 @@ namespace OsonCommerce.Application.Features
 {
     public class GetAllCashboxesQueryHandler : IRequestHandler<GetAllCashboxesQuery, List<CashboxDto>>
     {
-        private readonly IRepository<Cashbox> _repository;
+        private readonly ICashboxRepository _repository;
         private readonly IMapper _mapper;
-        public GetAllCashboxesQueryHandler(IRepository<Cashbox> repository, IMapper mapper)
+        public GetAllCashboxesQueryHandler(ICashboxRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

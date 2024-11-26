@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using OsonCommerce.Infrastructure.Authentication;
@@ -36,7 +37,6 @@ namespace OsonCommerce.Web.Extensions
                         }
                     };
                 });
-            services.AddAuthorization();
         }
     }
 }

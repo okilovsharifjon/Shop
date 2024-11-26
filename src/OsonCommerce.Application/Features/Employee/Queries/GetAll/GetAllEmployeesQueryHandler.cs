@@ -8,9 +8,9 @@ namespace OsonCommerce.Application.Features;
 
 public class GetAllEmployeesQueryHandler : IRequestHandler<GetAllEmployeesQuery, List<EmployeeDto>>
 {
-    private readonly IRepository<Employee> _repository;
+    private readonly IEmployeeRepository _repository;
     private readonly IMapper _mapper;
-    public GetAllEmployeesQueryHandler(IRepository<Employee> repository, IMapper mapper)
+    public GetAllEmployeesQueryHandler(IEmployeeRepository repository, IMapper mapper)
     {
         _repository = repository;
         _mapper = mapper;

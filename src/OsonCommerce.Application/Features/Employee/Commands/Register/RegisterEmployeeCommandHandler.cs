@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Interfaces.Repositories;
+using OsonCommerce.Application.Exceptions;
 
 namespace OsonCommerce.Application.Features
 {
     public class RegisterEmployeeCommandHandler : IRequestHandler<RegisterEmployeeCommand>
     {
         private readonly IPasswordHasher _passwordHasher;
-        private readonly IRepository<Employee> _repository;
+        private readonly IEmployeeRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IJwtProvider _jwtProvider;
         private readonly IValidator<RegisterEmployeeCommand> _validator;
 
         public RegisterEmployeeCommandHandler(
-            IPasswordHasher passwordHasher, IRepository<Employee> repository, 
+            IPasswordHasher passwordHasher, IEmployeeRepository repository, 
             IUnitOfWork unitOfWork, IValidator<RegisterEmployeeCommand> validator)
         {
             _passwordHasher = passwordHasher;
@@ -31,6 +31,13 @@ namespace OsonCommerce.Application.Features
         public async Task Handle(RegisterEmployeeCommand request, CancellationToken cancellationToken)
         {
             _validator.ValidateAndThrowAsync(request, cancellationToken);
+
+            var existingEmployee = await _repository.GetByEmailAsync(request.Email, cancellationToken);
+            if (existingEmployee != null)
+            {
+                throw new ExistingDataException($"Employee with '{existingEmployee.Email}' email already exists!");
+            }
+
             var hashedPassword = _passwordHasher.Generate(request.Password);
             
             var employee = new Employee

@@ -5,7 +5,7 @@ using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Manager")]
     [ApiController]
     [Route("api/storebranch")]
     public class StoreBranchController : ControllerBase 

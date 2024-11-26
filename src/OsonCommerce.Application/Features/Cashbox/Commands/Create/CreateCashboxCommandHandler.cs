@@ -10,11 +10,11 @@ namespace OsonCommerce.Application.Features
 {
     public class CreateCashboxCommandHandler : IRequestHandler<CreateCashboxCommand, Guid>
     {
-        private readonly IRepository<Cashbox> _repository;
+        private readonly ICashboxRepository _repository;
         private readonly IValidator<CreateCashboxCommand> _validator;
         private readonly IUnitOfWork _unitOfWork;
 
-        public CreateCashboxCommandHandler(IRepository<Cashbox> repository, IValidator<CreateCashboxCommand> validator, IUnitOfWork unitOfWork)
+        public CreateCashboxCommandHandler(ICashboxRepository repository, IValidator<CreateCashboxCommand> validator, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _validator = validator;

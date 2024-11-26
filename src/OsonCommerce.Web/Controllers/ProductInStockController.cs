@@ -5,7 +5,7 @@ using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin, Manager")]
     [ApiController]
     [Route("api/product_in_stock")]
     public class ProductInStockController : ControllerBase
@@ -26,6 +26,14 @@ namespace OsonCommerce.Web.Controllers
         [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductInStockById([FromRoute] GetProductInStockByIdQuery query, CancellationToken cancellationToken)
+        {
+            var result = await _mediator.Send(query, cancellationToken);
+            return Ok(result);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("paged")]
+        public async Task<IActionResult> GetPaged(GetPagedProductsInStockQuery query, CancellationToken cancellationToken)
         {
             var result = await _mediator.Send(query, cancellationToken);
             return Ok(result);

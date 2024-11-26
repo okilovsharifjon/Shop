@@ -8,11 +8,11 @@ namespace OsonCommerce.Application.Features;
 
 public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Guid>
 {
-    private readonly IRepository<Employee> _repository;
+    private readonly IEmployeeRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IValidator<CreateEmployeeCommand> _validator;
 
-    public CreateEmployeeCommandHandler(IRepository<Employee> repository, IUnitOfWork unitOfWork, IValidator<CreateEmployeeCommand> validator)
+    public CreateEmployeeCommandHandler(IEmployeeRepository repository, IUnitOfWork unitOfWork, IValidator<CreateEmployeeCommand> validator)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;
@@ -22,6 +22,7 @@ public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeComman
     public async Task<Guid> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {
         await _validator.ValidateAndThrowAsync(request, cancellationToken);
+        
         var employee = new Employee
         {
             Id = Guid.NewGuid(),

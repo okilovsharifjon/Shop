@@ -11,12 +11,12 @@ namespace OsonCommerce.Application.Features
 {
     public class WithdrawMoneyFromCashboxCommandHandler : IRequestHandler<WithdrawMoneyFromCashboxCommand>
     {
-        private readonly IRepository<Cashbox> _cahboxRepository;
+        private readonly ICashboxRepository _cahboxRepository;
         private readonly IRepository<CashboxOperation> _operationRepository;
         private readonly IValidator<WithdrawMoneyFromCashboxCommand> _validator;
         private readonly IUnitOfWork _unitOfWork;
         
-        public WithdrawMoneyFromCashboxCommandHandler(IRepository<Cashbox> cahboxRepository, IRepository<CashboxOperation> operationRepository, IUnitOfWork unitOfWork, IValidator<WithdrawMoneyFromCashboxCommand> validator)
+        public WithdrawMoneyFromCashboxCommandHandler(ICashboxRepository cahboxRepository, IRepository<CashboxOperation> operationRepository, IUnitOfWork unitOfWork, IValidator<WithdrawMoneyFromCashboxCommand> validator)
         {
             _cahboxRepository = cahboxRepository;
             _operationRepository = operationRepository;

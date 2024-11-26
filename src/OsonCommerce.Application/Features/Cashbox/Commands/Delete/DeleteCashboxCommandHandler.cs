@@ -10,10 +10,10 @@ namespace OsonCommerce.Application.Features
 {
     public class DeleteCashboxCommandHandler : IRequestHandler<DeleteCashboxCommand>
     {
-        private readonly IRepository<Cashbox> _repository;
+        private readonly ICashboxRepository _repository;
         private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteCashboxCommandHandler(IRepository<Cashbox> repository, IUnitOfWork unitOfWork)
+        public DeleteCashboxCommandHandler(ICashboxRepository repository, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _unitOfWork = unitOfWork;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OsonCommerce.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9676be899c40c56a4f6c7cee17b262043bcd3001")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b03fc4faf52049a6f7a36eb524b4b4e209e3e8ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("OsonCommerce.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OsonCommerce.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

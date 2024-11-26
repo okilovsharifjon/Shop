@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OsonCommerce.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+767726621e8f009d7deec2389acb96794299b4c1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b03fc4faf52049a6f7a36eb524b4b4e209e3e8ab")]
 [assembly: System.Reflection.AssemblyProductAttribute("OsonCommerce.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OsonCommerce.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

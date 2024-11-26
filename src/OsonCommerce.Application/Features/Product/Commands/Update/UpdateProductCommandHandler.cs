@@ -9,11 +9,11 @@ namespace OsonCommerce.Application.Features
 {
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand>
     {
-        private readonly IRepository<Product> _repository;
+        private readonly IProductRepository _repository;
         private readonly IValidator<UpdateProductCommand> _validator;
         private readonly IUnitOfWork _unitOfWork;
 
-        public UpdateProductCommandHandler(IRepository<Product> repository, IValidator<UpdateProductCommand> validator, IUnitOfWork unitOfWork)
+        public UpdateProductCommandHandler(IProductRepository repository, IValidator<UpdateProductCommand> validator, IUnitOfWork unitOfWork)
         {
             _repository = repository;
             _validator = validator;

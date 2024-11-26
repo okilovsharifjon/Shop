@@ -3,6 +3,7 @@ using OsonCommerce.Application;
 using OsonCommerce.Web.Extensions;
 using Microsoft.Extensions.Options;
 using OsonCommerce.Infrastructure.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("JwtOptions"));
 builder.Services.AddWebAuthentication(builder.Services.BuildServiceProvider().GetRequiredService<IOptions<JwtOptions>>());
+
 builder.Services.AddHttpContextAccessor();
 
 

@@ -9,6 +9,8 @@ namespace OsonCommerce.Application.Interfaces.Repositories
 {
     public interface IEmployeeRepository : IRepository<Employee>    
     {
-        Task<Employee> GetByEmail(string email, CancellationToken cancellationToken);
+        Task<Employee> GetByEmailAsync(string email, CancellationToken cancellationToken);
+
+
     }
 }

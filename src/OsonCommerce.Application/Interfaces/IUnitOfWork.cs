@@ -5,10 +5,16 @@ namespace OsonCommerce.Application.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        IRepository<Cashbox> Cashboxes { get; }
-        IRepository<Stock> Stocks { get; }
-        IRepository<Product> Products { get; }
-        IRepository<Provider> Providers { get; }
+        public ICashboxRepository Cashboxes { get; }
+        public IRepository<Stock> Stocks { get; }
+        public IProductRepository Products { get; }
+        public IRepository<Provider> Providers { get; }
+        public IRepository<Category> Categories { get; }
+        public IEmployeeRepository Employees { get; }
+        public IRepository<Manufacture> Manufactures { get; }
+        public IRepository<ProductInStock> ProductsInStock { get; }
+        public IRepository<StoreBranch> StoreBranches { get; }
+        public IRepository<CashboxOperation> CashboxOperations { get; }
 
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);

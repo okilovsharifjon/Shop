@@ -7,10 +7,10 @@ namespace OsonCommerce.Application.Features
 {
     public class GetPagedProductsQueryHandler : IRequestHandler<GetPagedProductsQuery, PagedResult<ProductDto>>
     {
-        private readonly IRepository<Product> _repository;
+        private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
 
-        public GetPagedProductsQueryHandler(IRepository<Product> repository, IMapper mapper)
+        public GetPagedProductsQueryHandler(IProductRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;

@@ -9,6 +9,7 @@
       "OsonCommerce.Infrastructure/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.AspNetCore.Authorization": "8.0.11",
           "Microsoft.EntityFrameworkCore": "8.0.10",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.10",
           "Microsoft.Extensions.Configuration": "9.0.0",
@@ -102,6 +103,27 @@
           "lib/netstandard2.0/MediatR.Contracts.dll": {
             "assemblyVersion": "2.0.1.0",
             "fileVersion": "2.0.1.0"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authorization/8.0.11": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Metadata": "8.0.11",
+          "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
+          "Microsoft.Extensions.Options": "8.0.2"
+        },
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authorization.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Metadata/8.0.11": {
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Metadata.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.1124.52116"
           }
         }
       },
@@ -742,12 +764,18 @@
           "OsonCommerce.Domain": "1.0.0"
         },
         "runtime": {
-          "OsonCommerce.Application.dll": {}
+          "OsonCommerce.Application.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       },
       "OsonCommerce.Domain/1.0.0": {
         "runtime": {
-          "OsonCommerce.Domain.dll": {}
+          "OsonCommerce.Domain.dll": {
+            "assemblyVersion": "1.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -820,6 +848,20 @@
       "sha512": "sha512-FYv95bNT4UwcNA+G/J1oX5OpRiSUxteXaUt2BJbRSdRNiIUNbggJF69wy6mnk2wYToaanpdXZdCwVylt96MpwQ==",
       "path": "mediatr.contracts/2.0.1",
       "hashPath": "mediatr.contracts.2.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authorization/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ACaLyjBSz9WUzbaJe0Sv09/FihRNHYlRUIj3uQ8CZFFByf6Qwv3+PXnbltidFKz2iOyqdvppQias3emdQUY2nA==",
+      "path": "microsoft.aspnetcore.authorization/8.0.11",
+      "hashPath": "microsoft.aspnetcore.authorization.8.0.11.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Metadata/8.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cy04xnMSTXTkRPjEwseRz57R5zjR/CWsdEOHH6NhWbNl97k+U1w6dSjqIOC7kv08tyzmM30FzIilSDtE5HdL/A==",
+      "path": "microsoft.aspnetcore.metadata/8.0.11",
+      "hashPath": "microsoft.aspnetcore.metadata.8.0.11.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",

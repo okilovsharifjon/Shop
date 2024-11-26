@@ -5,7 +5,7 @@ using OsonCommerce.Application.Features;
 
 namespace OsonCommerce.Web.Controllers;
 
-[Authorize]
+[Authorize(Roles = "Admin, Manager")]
 [ApiController]
 [Route("api/stock")]
 public class StockController : ControllerBase

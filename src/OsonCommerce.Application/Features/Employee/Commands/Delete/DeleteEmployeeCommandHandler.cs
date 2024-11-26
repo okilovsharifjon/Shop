@@ -8,10 +8,10 @@ namespace OsonCommerce.Application.Features;
 
 public class DeleteEmployeeCommandHandler : IRequestHandler<DeleteEmployeeCommand>
 {
-    private readonly IRepository<Employee> _repository;
+    private readonly IEmployeeRepository _repository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public DeleteEmployeeCommandHandler(IRepository<Employee> repository, IUnitOfWork unitOfWork)
+    public DeleteEmployeeCommandHandler(IEmployeeRepository repository, IUnitOfWork unitOfWork)
     {
         _repository = repository;
         _unitOfWork = unitOfWork;

@@ -50,7 +50,6 @@ E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\staticwebassets\msbuil
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.OsonCommerce.Web.props
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\staticwebassets.pack.json
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\scopedcss\bundle\OsonCommerce.Web.styles.css
-E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonCommerce.Web.csproj.CopyComplete
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonCommerce.Web.dll
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\refint\OsonCommerce.Web.dll
 E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonCommerce.Web.pdb
@@ -71,3 +70,10 @@ E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.C
 E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
 E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Binder.dll
 E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Authorization.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\Microsoft.AspNetCore.Metadata.dll
+E:\MyProjects\Store\src\OsonCommerce.Web\bin\Debug\net8.0\OsonCommerce.Web.staticwebassets.endpoints.json
+E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\staticwebassets\msbuild.OsonCommerce.Web.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\MyProjects\Store\src\OsonCommerce.Web\obj\Debug\net8.0\OsonComm.BF4CF1BE.Up2Date

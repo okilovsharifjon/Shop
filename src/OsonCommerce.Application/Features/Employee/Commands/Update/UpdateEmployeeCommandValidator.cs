@@ -13,6 +13,5 @@ public class UpdateEmployeeCommandValidator : AbstractValidator<UpdateEmployeeCo
         RuleFor(x => x.PhoneNumber).MaximumLength(15);
         RuleFor(x => x.Position).MaximumLength(50);
         RuleFor(x => x.Department).MaximumLength(50);
-        RuleFor(x => x.HireDate).NotEmpty();
     }
 }

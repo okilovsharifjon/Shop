@@ -1,0 +1,868 @@
+[
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "CreateCashbox",
+    "RelativePath": "api/cashbox",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateCashboxCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "GetAll",
+    "RelativePath": "api/cashbox",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllCashboxesQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "UpdateCashbox",
+    "RelativePath": "api/cashbox",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateCashboxCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "AddMoney",
+    "RelativePath": "api/cashbox/add",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.AddMoneyToCashboxCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "WithdrawMoney",
+    "RelativePath": "api/cashbox/withdraw",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.WithdrawMoneyFromCashboxCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "GetById",
+    "RelativePath": "api/cashbox/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetCashboxByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CashboxController",
+    "Method": "DeleteCashbox",
+    "RelativePath": "api/cashbox/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteCashboxCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CategoryController",
+    "Method": "Create",
+    "RelativePath": "api/category",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateCategoryCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CategoryController",
+    "Method": "GetAll",
+    "RelativePath": "api/category",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllCategoriesQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CategoryController",
+    "Method": "Update",
+    "RelativePath": "api/category",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateCategoryCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CategoryController",
+    "Method": "GetById",
+    "RelativePath": "api/category/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetCategoryByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.CategoryController",
+    "Method": "Delete",
+    "RelativePath": "api/category/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteCategoryCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "CreateEmployee",
+    "RelativePath": "api/employee",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateEmployeeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "UpdateEmployee",
+    "RelativePath": "api/employee",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateEmployeeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "GetAllEmployees",
+    "RelativePath": "api/employee",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllEmployeesQuery",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "Login",
+    "RelativePath": "api/employee/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.LoginEmployeeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "Register",
+    "RelativePath": "api/employee/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.RegisterEmployeeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "GetEmployeeById",
+    "RelativePath": "api/employee/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.EmployeeController",
+    "Method": "DeleteEmployee",
+    "RelativePath": "api/employee/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ManufactureController",
+    "Method": "CreateManufacture",
+    "RelativePath": "api/manufacture",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateManufactureCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ManufactureController",
+    "Method": "UpdateManufacture",
+    "RelativePath": "api/manufacture",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateManufactureCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ManufactureController",
+    "Method": "GetAllManufactures",
+    "RelativePath": "api/manufacture",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllManufacturesQuery",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ManufactureController",
+    "Method": "GetManufactureById",
+    "RelativePath": "api/manufacture/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ManufactureController",
+    "Method": "DeleteManufacture",
+    "RelativePath": "api/manufacture/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
+    "Method": "Create",
+    "RelativePath": "api/product",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateProductCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
+    "Method": "GetAll",
+    "RelativePath": "api/product",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllProductsQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
+    "Method": "Update",
+    "RelativePath": "api/product",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateProductCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
+    "Method": "GetPaged",
+    "RelativePath": "api/product/paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetPagedProductsQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
+    "Method": "GetById",
+    "RelativePath": "api/product/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetProductByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
+    "Method": "Delete",
+    "RelativePath": "api/product/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteProductCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
+    "Method": "CreateProductInStock",
+    "RelativePath": "api/product_in_stock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateProductInStockCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
+    "Method": "UpdateProductInStock",
+    "RelativePath": "api/product_in_stock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateProductInStockCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
+    "Method": "GetAllProductInStocks",
+    "RelativePath": "api/product_in_stock",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllProductInStocksQuery",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
+    "Method": "GetPaged",
+    "RelativePath": "api/product_in_stock/paged",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetPagedProductsInStockQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
+    "Method": "GetProductInStockById",
+    "RelativePath": "api/product_in_stock/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
+    "Method": "DeleteProductInStock",
+    "RelativePath": "api/product_in_stock/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProviderController",
+    "Method": "Create",
+    "RelativePath": "api/provider",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateProviderCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProviderController",
+    "Method": "GetAll",
+    "RelativePath": "api/provider",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllProvidersQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProviderController",
+    "Method": "Update",
+    "RelativePath": "api/provider",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateProviderCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProviderController",
+    "Method": "GetById",
+    "RelativePath": "api/provider/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetProviderByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProviderController",
+    "Method": "Delete",
+    "RelativePath": "api/provider/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteProviderCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StockController",
+    "Method": "Create",
+    "RelativePath": "api/stock",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateStockCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StockController",
+    "Method": "GetAll",
+    "RelativePath": "api/stock",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllStocksQuery",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StockController",
+    "Method": "Update",
+    "RelativePath": "api/stock",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateStockCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StockController",
+    "Method": "GetById",
+    "RelativePath": "api/stock/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetStockByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StockController",
+    "Method": "Delete",
+    "RelativePath": "api/stock/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteStockCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StoreBranchController",
+    "Method": "CreateStoreBranch",
+    "RelativePath": "api/storebranch",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateStoreBranchCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StoreBranchController",
+    "Method": "UpdateStoreBranch",
+    "RelativePath": "api/storebranch",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateStoreBranchCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StoreBranchController",
+    "Method": "GetAllStoreBranches",
+    "RelativePath": "api/storebranch",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetAllStoreBranchesQuery",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StoreBranchController",
+    "Method": "GetStoreBranchById",
+    "RelativePath": "api/storebranch/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.StoreBranchController",
+    "Method": "DeleteStoreBranch",
+    "RelativePath": "api/storebranch/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

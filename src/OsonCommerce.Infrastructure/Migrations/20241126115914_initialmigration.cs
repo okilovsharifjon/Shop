@@ -1,12 +1,15 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
 namespace OsonCommerce.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigrations : Migration
+    public partial class initialmigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,11 +67,24 @@ namespace OsonCommerce.Infrastructure.Migrations
                     address = table.Column<string>(type: "VARCHAR", maxLength: 300, nullable: false),
                     email = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
                     description = table.Column<string>(type: "VARCHAR", maxLength: 500, nullable: false),
-                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false)
+                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_provider", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "role",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    name = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_role", x => x.id);
                 });
 
             migrationBuilder.CreateTable(
@@ -82,7 +98,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                     capacity = table.Column<int>(type: "INTEGER", nullable: false),
                     current_load = table.Column<int>(type: "INTEGER", nullable: false),
                     phone_number = table.Column<string>(type: "VARCHAR", nullable: false),
-                    is_available = table.Column<bool>(type: "BOOLEAN", nullable: false)
+                    is_available = table.Column<bool>(type: "BOOLEAN", nullable: false, defaultValue: true)
                 },
                 constraints: table =>
                 {
@@ -108,6 +124,22 @@ namespace OsonCommerce.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "user",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "UUID", nullable: false),
+                    first_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
+                    last_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
+                    email = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
+                    phone_number = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
+                    password = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "cashbox",
                 columns: table => new
                 {
@@ -117,8 +149,8 @@ namespace OsonCommerce.Infrastructure.Migrations
                     name = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
                     key = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
                     balance = table.Column<decimal>(type: "DECIMAL", nullable: false),
-                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false),
-                    last_updated_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false)
+                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false, defaultValue: true),
+                    last_updated_date = table.Column<DateTime>(type: "TIMESTAMP WITH TIME ZONE", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -132,20 +164,33 @@ namespace OsonCommerce.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "customer",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "UUID", nullable: false),
+                    shipping_address = table.Column<string>(type: "VARCHAR", maxLength: 200, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_customer", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_customer_user_id",
+                        column: x => x.id,
+                        principalTable: "user",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "employee",
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "UUID", nullable: false),
                     position = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
-                    hire_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
-                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false),
+                    hire_date = table.Column<DateTime>(type: "TIMESTAMP WITH TIME ZONE", nullable: false),
+                    is_active = table.Column<bool>(type: "BOOLEAN", nullable: false, defaultValue: true),
                     department = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: true),
-                    StoreBranchId = table.Column<Guid>(type: "uuid", nullable: true),
-                    first_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
-                    last_name = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false),
-                    email = table.Column<string>(type: "VARCHAR", maxLength: 100, nullable: false),
-                    phone_number = table.Column<string>(type: "VARCHAR", maxLength: 15, nullable: false),
-                    password = table.Column<string>(type: "TEXT", nullable: false)
+                    StoreBranchId = table.Column<Guid>(type: "uuid", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -155,6 +200,36 @@ namespace OsonCommerce.Infrastructure.Migrations
                         column: x => x.StoreBranchId,
                         principalTable: "store_branch",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_employee_user_id",
+                        column: x => x.id,
+                        principalTable: "user",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "user_roles",
+                columns: table => new
+                {
+                    role_id = table.Column<int>(type: "integer", nullable: false),
+                    user_id = table.Column<Guid>(type: "UUID", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_user_roles", x => new { x.user_id, x.role_id });
+                    table.ForeignKey(
+                        name: "FK_user_roles_role_role_id",
+                        column: x => x.role_id,
+                        principalTable: "role",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_user_roles_user_user_id",
+                        column: x => x.user_id,
+                        principalTable: "user",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -189,7 +264,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                     cashbox_id = table.Column<Guid>(type: "UUID", nullable: false),
                     employee_id = table.Column<Guid>(type: "UUID", nullable: false),
                     amount = table.Column<decimal>(type: "numeric(18,2)", nullable: false),
-                    date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    date = table.Column<DateTime>(type: "TIMESTAMP WITH TIME ZONE", nullable: false),
                     description = table.Column<string>(type: "VARCHAR", maxLength: 500, nullable: false),
                     transaction_type = table.Column<int>(type: "integer", nullable: false),
                     status = table.Column<int>(type: "integer", nullable: false),
@@ -230,7 +305,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                     image_name = table.Column<string>(type: "VARCHAR", maxLength: 255, nullable: true),
                     description = table.Column<string>(type: "VARCHAR", maxLength: 500, nullable: true),
                     weight = table.Column<decimal>(type: "DECIMAL", nullable: true),
-                    updated_at = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "TIMESTAMP WITH TIME ZONE", nullable: false),
                     manufacture_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
                     expiry_date = table.Column<DateTime>(type: "TIMESTAMP", nullable: true),
                     sku = table.Column<string>(type: "VARCHAR", maxLength: 50, nullable: false)
@@ -321,8 +396,8 @@ namespace OsonCommerce.Infrastructure.Migrations
                     stock_id = table.Column<Guid>(type: "UUID", nullable: false),
                     provider_id = table.Column<Guid>(type: "UUID", nullable: false),
                     quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    is_available = table.Column<bool>(type: "BOOLEAN", nullable: false),
-                    last_updated = table.Column<DateTime>(type: "TIMESTAMP", nullable: false),
+                    is_available = table.Column<bool>(type: "BOOLEAN", nullable: false, defaultValue: true),
+                    last_updated = table.Column<DateTime>(type: "TIMESTAMP WITH TIME ZONE", nullable: false),
                     product_price_id = table.Column<Guid>(type: "UUID", nullable: false),
                     product_id1 = table.Column<Guid>(type: "UUID", nullable: false)
                 },
@@ -360,6 +435,32 @@ namespace OsonCommerce.Infrastructure.Migrations
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.InsertData(
+                table: "role",
+                columns: new[] { "id", "name" },
+                values: new object[,]
+                {
+                    { 1, "Admin" },
+                    { 2, "Manager" },
+                    { 3, "Cashier" },
+                    { 4, "Customer" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "user",
+                columns: new[] { "id", "email", "first_name", "last_name", "password", "phone_number" },
+                values: new object[] { new Guid("9643a27f-5910-4dde-b804-f4aef76efc8b"), "adminadmin@gmail.com", "Admin", "Admin", "$2a$11$ui9LyxF8SdsmW4npcBp0mepQVpo3L.xJ6E4KtOSWXZhd6ebCxF572", "+992-00-000-00-00" });
+
+            migrationBuilder.InsertData(
+                table: "employee",
+                columns: new[] { "id", "department", "hire_date", "is_active", "position", "StoreBranchId" },
+                values: new object[] { new Guid("9643a27f-5910-4dde-b804-f4aef76efc8b"), "Admin", new DateTime(2024, 11, 26, 11, 59, 14, 365, DateTimeKind.Utc).AddTicks(2523), true, "Admin", null });
+
+            migrationBuilder.InsertData(
+                table: "user_roles",
+                columns: new[] { "role_id", "user_id" },
+                values: new object[] { 1, new Guid("9643a27f-5910-4dde-b804-f4aef76efc8b") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_cashbox_store_branch_id",
@@ -456,6 +557,11 @@ namespace OsonCommerce.Infrastructure.Migrations
                 table: "product_price",
                 column: "warehouse_id");
 
+            migrationBuilder.CreateIndex(
+                name: "IX_user_roles_role_id",
+                table: "user_roles",
+                column: "role_id");
+
             migrationBuilder.AddForeignKey(
                 name: "FK_product_product_attribute_product_attribute_id",
                 table: "product",
@@ -486,7 +592,13 @@ namespace OsonCommerce.Infrastructure.Migrations
                 name: "cashbox_operation");
 
             migrationBuilder.DropTable(
+                name: "customer");
+
+            migrationBuilder.DropTable(
                 name: "product_in_stock");
+
+            migrationBuilder.DropTable(
+                name: "user_roles");
 
             migrationBuilder.DropTable(
                 name: "cashbox");
@@ -501,7 +613,13 @@ namespace OsonCommerce.Infrastructure.Migrations
                 name: "provider");
 
             migrationBuilder.DropTable(
+                name: "role");
+
+            migrationBuilder.DropTable(
                 name: "store_branch");
+
+            migrationBuilder.DropTable(
+                name: "user");
 
             migrationBuilder.DropTable(
                 name: "price_type");

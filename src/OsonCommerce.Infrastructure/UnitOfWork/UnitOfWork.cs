@@ -9,21 +9,39 @@ namespace OsonCommerce.Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly OsonCommerceDbContext _dbContext;
-        public IRepository<Cashbox> Cashboxes { get; }
+        public ICashboxRepository Cashboxes { get; }
         public IRepository<Stock> Stocks { get; }
-        public IRepository<Product> Products { get; }
+        public IProductRepository Products { get; }
         public IRepository<Provider> Providers { get; }
+        public IRepository<Category> Categories { get; }
+        public IEmployeeRepository Employees { get; }
+        public IRepository<Manufacture> Manufactures { get; }
+        public IRepository<ProductInStock> ProductsInStock { get; }
+        public IRepository<StoreBranch> StoreBranches { get; }
+        public IRepository<CashboxOperation> CashboxOperations { get; }
         public UnitOfWork(OsonCommerceDbContext dbContext,
-        IRepository<Cashbox> cashboxes,
+        ICashboxRepository cashboxes,
         IRepository<Stock> stocks,
-        IRepository<Product> products,
-        IRepository<Provider> providers)
+        IProductRepository products,
+        IRepository<Provider> providers,
+        IRepository<Category> categories,
+        IEmployeeRepository employees,
+        IRepository<Manufacture> manufactures,
+        IRepository<ProductInStock> productsInStock,
+        IRepository<StoreBranch> storeBranches,
+        IRepository<CashboxOperation> cashboxOperations)
         {
             _dbContext = dbContext;
             Cashboxes = cashboxes;
             Stocks = stocks;
             Products = products;
             Providers = providers;
+            Categories = categories;
+            Employees = employees;
+            Manufactures = manufactures;
+            ProductsInStock = productsInStock;
+            StoreBranches = storeBranches;
+            CashboxOperations = cashboxOperations;
         }
 
 

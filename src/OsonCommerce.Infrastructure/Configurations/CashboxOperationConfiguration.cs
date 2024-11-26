@@ -32,7 +32,7 @@ namespace OsonCommerce.Infrastructure.Configurations
                 .IsRequired();
 
             builder.Property(t => t.Date)
-                .HasColumnType("TIMESTAMP")
+                .HasColumnType("TIMESTAMP WITH TIME ZONE")
                 .HasColumnName("date")
                 .IsRequired();
 

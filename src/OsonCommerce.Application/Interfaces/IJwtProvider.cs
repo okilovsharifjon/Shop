@@ -11,6 +11,6 @@ namespace OsonCommerce.Application.Interfaces
     {
         //string GenerateToken(Employee employee);
         //string GenerateToken(Customer customer);
-        string GenerateToken(User user);
+        Task<string> GenerateToken(User user, CancellationToken cancellationToken);
     }
 }

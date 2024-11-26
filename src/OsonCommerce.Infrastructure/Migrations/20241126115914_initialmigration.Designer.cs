@@ -12,8 +12,8 @@ using OsonCommerce.Infrastructure;
 namespace OsonCommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(OsonCommerceDbContext))]
-    [Migration("20241118090322_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20241126115914_initialmigration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,9 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("cashier_ids");
 
                     b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
                     b.Property<string>("Key")
@@ -67,7 +69,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("key");
 
                     b.Property<DateTime>("LastUpdatedDate")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
                         .HasColumnName("last_updated_date");
 
                     b.Property<string>("Name")
@@ -106,7 +108,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnType("UUID");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
                         .HasColumnName("date");
 
                     b.Property<string>("Description")
@@ -160,71 +162,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("category", (string)null);
-                });
-
-            modelBuilder.Entity("OsonCommerce.Domain.Entities.Employee", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("UUID")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Department")
-                        .HasMaxLength(50)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("department");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("email");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("first_name");
-
-                    b.Property<DateTime>("HireDate")
-                        .HasColumnType("TIMESTAMP")
-                        .HasColumnName("hire_date");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("BOOLEAN")
-                        .HasColumnName("is_active");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("last_name");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("password");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("phone_number");
-
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("VARCHAR")
-                        .HasColumnName("position");
-
-                    b.Property<Guid?>("StoreBranchId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("StoreBranchId");
-
-                    b.ToTable("employee", (string)null);
                 });
 
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Manufacture", b =>
@@ -355,7 +292,7 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("unit");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
                         .HasColumnName("updated_at");
 
                     b.Property<decimal?>("Weight")
@@ -418,11 +355,13 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("id");
 
                     b.Property<bool>("IsAvailable")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
                         .HasColumnName("is_available");
 
                     b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("TIMESTAMP")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
                         .HasColumnName("last_updated");
 
                     b.Property<Guid>("ProductId")
@@ -545,7 +484,9 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("email");
 
                     b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
                         .HasColumnName("is_active");
 
                     b.Property<string>("Name")
@@ -557,6 +498,47 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("provider", (string)null);
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("role", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Manager"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Cashier"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Customer"
+                        });
                 });
 
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Stock", b =>
@@ -575,7 +557,9 @@ namespace OsonCommerce.Infrastructure.Migrations
                         .HasColumnName("current_load");
 
                     b.Property<bool>("IsAvailable")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
                         .HasColumnName("is_available");
 
                     b.Property<string>("Location")
@@ -648,6 +632,134 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.ToTable("store_branch", (string)null);
                 });
 
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.User", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("UUID")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("email");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("last_name");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("password");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(15)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("phone_number");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("user", (string)null);
+
+                    b.UseTptMappingStrategy();
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.UserRole", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("UUID")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("integer")
+                        .HasColumnName("role_id");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("user_roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("9643a27f-5910-4dde-b804-f4aef76efc8b"),
+                            RoleId = 1
+                        });
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.Customer", b =>
+                {
+                    b.HasBaseType("OsonCommerce.Domain.Entities.User");
+
+                    b.Property<string>("ShippingAddress")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("shipping_address");
+
+                    b.ToTable("customer", (string)null);
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.Employee", b =>
+                {
+                    b.HasBaseType("OsonCommerce.Domain.Entities.User");
+
+                    b.Property<string>("Department")
+                        .HasMaxLength(50)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("department");
+
+                    b.Property<DateTime>("HireDate")
+                        .HasColumnType("TIMESTAMP WITH TIME ZONE")
+                        .HasColumnName("hire_date");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("BOOLEAN")
+                        .HasDefaultValue(true)
+                        .HasColumnName("is_active");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("VARCHAR")
+                        .HasColumnName("position");
+
+                    b.Property<Guid?>("StoreBranchId")
+                        .HasColumnType("uuid");
+
+                    b.HasIndex("StoreBranchId");
+
+                    b.ToTable("employee", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("9643a27f-5910-4dde-b804-f4aef76efc8b"),
+                            Email = "adminadmin@gmail.com",
+                            FirstName = "Admin",
+                            LastName = "Admin",
+                            Password = "$2a$11$ui9LyxF8SdsmW4npcBp0mepQVpo3L.xJ6E4KtOSWXZhd6ebCxF572",
+                            PhoneNumber = "+992-00-000-00-00",
+                            Department = "Admin",
+                            HireDate = new DateTime(2024, 11, 26, 11, 59, 14, 365, DateTimeKind.Utc).AddTicks(2523),
+                            IsActive = true,
+                            Position = "Admin"
+                        });
+                });
+
             modelBuilder.Entity("CashboxEmployee", b =>
                 {
                     b.HasOne("OsonCommerce.Domain.Entities.Cashbox", null)
@@ -695,13 +807,6 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.Navigation("Cashbox");
 
                     b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("OsonCommerce.Domain.Entities.Employee", b =>
-                {
-                    b.HasOne("OsonCommerce.Domain.Entities.StoreBranch", null)
-                        .WithMany("Managers")
-                        .HasForeignKey("StoreBranchId");
                 });
 
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Product", b =>
@@ -804,6 +909,47 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.Navigation("Stock");
                 });
 
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.UserRole", b =>
+                {
+                    b.HasOne("OsonCommerce.Domain.Entities.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OsonCommerce.Domain.Entities.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.Customer", b =>
+                {
+                    b.HasOne("OsonCommerce.Domain.Entities.User", null)
+                        .WithOne()
+                        .HasForeignKey("OsonCommerce.Domain.Entities.Customer", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.Employee", b =>
+                {
+                    b.HasOne("OsonCommerce.Domain.Entities.User", null)
+                        .WithOne()
+                        .HasForeignKey("OsonCommerce.Domain.Entities.Employee", "Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OsonCommerce.Domain.Entities.StoreBranch", null)
+                        .WithMany("Managers")
+                        .HasForeignKey("StoreBranchId");
+                });
+
             modelBuilder.Entity("OsonCommerce.Domain.Entities.Cashbox", b =>
                 {
                     b.Navigation("CashboxOperations");
@@ -828,9 +974,19 @@ namespace OsonCommerce.Infrastructure.Migrations
                     b.Navigation("ProductStocks");
                 });
 
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
             modelBuilder.Entity("OsonCommerce.Domain.Entities.StoreBranch", b =>
                 {
                     b.Navigation("Managers");
+                });
+
+            modelBuilder.Entity("OsonCommerce.Domain.Entities.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }

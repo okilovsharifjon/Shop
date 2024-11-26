@@ -7,10 +7,10 @@ namespace OsonCommerce.Application.Features
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQuery, List<ProductDto>>
     {
-        private readonly IRepository<Product> _repository;
+        private readonly IProductRepository _repository;
         private readonly IMapper _mapper;
 
-        public GetAllProductsQueryHandler(IRepository<Product> repository, IMapper mapper)
+        public GetAllProductsQueryHandler(IProductRepository repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
