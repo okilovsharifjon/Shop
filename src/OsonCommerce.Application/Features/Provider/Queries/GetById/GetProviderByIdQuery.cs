@@ -1,10 +1,9 @@
 using MediatR;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class GetProviderByIdQuery : IRequest<ProviderDto>
 {
-    public class GetProviderByIdQuery : IRequest<ProviderDto>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }
 

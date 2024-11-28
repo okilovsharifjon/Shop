@@ -1,6 +1,6 @@
 using AutoMapper;
 using OsonCommerce.Domain.Entities;
-using OsonCommerce.Application.Mappers;
+using OsonCommerce.Application.Common.Mappers;
 
 namespace OsonCommerce.Application.Features;
 

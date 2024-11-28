@@ -1,8 +1,7 @@
-namespace OsonCommerce.Domain.Enums
+namespace OsonCommerce.Domain.Enums;
+
+public enum TransactionType
 {
-    public enum TransactionType
-    {
-        Deposit,    
-        Withdrawal
-    }
+    Deposit,    
+    Withdrawal
 }

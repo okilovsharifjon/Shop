@@ -6,93 +6,90 @@ using FluentValidation;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Enums;
 using OsonCommerce.Application.Interfaces.Repositories;
+using OsonCommerce.Application.Common.Exceptions;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class AddMoneyToCashboxCommandHandler(
+    ICashboxRepository cahboxRepository, 
+    IRepository<CashboxOperation> operationRepository, 
+    IUnitOfWork unitOfWork, 
+    IValidator<AddMoneyToCashboxCommand> validator
+    ) : IRequestHandler<AddMoneyToCashboxCommand>
 {
-    public class AddMoneyToCashboxCommandHandler : IRequestHandler<AddMoneyToCashboxCommand>
+    private readonly ICashboxRepository _cashboxRepository = cahboxRepository;
+    private readonly IRepository<CashboxOperation> _operationRepository = operationRepository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<AddMoneyToCashboxCommand> _validator = validator;
+
+    public async Task Handle(AddMoneyToCashboxCommand request, CancellationToken cancellationToken)
     {
-        private readonly ICashboxRepository _cashboxRepository;
-        private readonly IRepository<CashboxOperation> _operationRepository;
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IValidator<AddMoneyToCashboxCommand> _validator;
-
-        public AddMoneyToCashboxCommandHandler(ICashboxRepository cahboxRepository, IRepository<CashboxOperation> operationRepository, IUnitOfWork unitOfWork, IValidator<AddMoneyToCashboxCommand> validator)
+        await _validator.ValidateAsync(request, cancellationToken);
+        var cashbox = await _cashboxRepository.GetCashboxWithDetailsAsync(request.CashboxId, cancellationToken);
+        if (cashbox == null)
         {
-            _cashboxRepository = cahboxRepository;
-            _operationRepository = operationRepository;
-            _unitOfWork = unitOfWork;
-            _validator = validator;
+            throw new NotFoundException("Cashbox not found");
         }
 
-        public async Task Handle(AddMoneyToCashboxCommand request, CancellationToken cancellationToken)
+        var operation = new CashboxOperation
         {
-            await _validator.ValidateAsync(request, cancellationToken);
-            var cashbox = await _cashboxRepository.GetCashboxWithDetailsAsync(request.CashboxId, cancellationToken);
-            if (cashbox == null)
-            {
-                throw new NotFoundException("Cashbox not found");
-            }
+            Id = Guid.NewGuid(),
+            Amount = request.Amount,
+            CashboxId = request.CashboxId,
+            Date = DateTime.Now,
+            Description = "description",
+            Status = TransactionStatus.Failed,
+            TransactionType = TransactionType.Deposit
+        };
 
-            var operation = new CashboxOperation
+        try
+        {
+            if (!NetworkInterface.GetIsNetworkAvailable())
             {
-                Id = Guid.NewGuid(),
-                Amount = request.Amount,
-                CashboxId = request.CashboxId,
-                Date = DateTime.Now,
-                Description = "description",
-                Status = TransactionStatus.Failed,
-                TransactionType = TransactionType.Deposit
-            };
-
-            try
-            {
-                if (!NetworkInterface.GetIsNetworkAvailable())
-                {
-                    throw new NetworkException("No network connection available");
-                }
-                else if (cashbox.Balance < request.Amount)
-                {
-                    throw new InsufficientFundsException("Insufficient funds");
-                }
-                else if (request.Amount <= 0)
-                {
-                    throw new InvalidAmountException("Invalid amount");
-                }
-                else if (cashbox.IsActive == false)
-                {
-                    throw new CashboxIsNotActiveException("Cashbox is not active");
-                }
-                else
-                {
-                    cashbox.Balance += request.Amount;
-                    await _unitOfWork.SaveChangesAsync();
-                    operation.Status = TransactionStatus.Completed;
-                }
+                throw new NetworkException("No network connection available");
             }
-            catch (NetworkException)
+            else if (cashbox.Balance < request.Amount)
             {
-                
+                throw new InsufficientFundsException("Insufficient funds");
             }
-            catch (InsufficientFundsException)
+            else if (request.Amount <= 0)
             {
+                throw new InvalidAmountException("Invalid amount");
             }
-            catch (InvalidAmountException)
+            else if (cashbox.IsActive == false)
             {
+                throw new CashboxIsNotActiveException("Cashbox is not active");
             }
-            catch (InvalidCurrencyException)
+            else
             {
-            }
-            catch (CashboxIsNotActiveException)
-            {
-            }
-            catch (Exception)
-            {
-            }
-            finally
-            {
-                _operationRepository.CreateAsync(operation, cancellationToken);
+                cashbox.Balance += request.Amount;
+                await _unitOfWork.SaveChangesAsync();
+                operation.Status = TransactionStatus.Completed;
             }
         }
-        
+        catch (NetworkException)
+        {
+            
+        }
+        catch (InsufficientFundsException)
+        {
+        }
+        catch (InvalidAmountException)
+        {
+        }
+        catch (InvalidCurrencyException)
+        {
+        }
+        catch (CashboxIsNotActiveException)
+        {
+        }
+        catch (Exception)
+        {
+        }
+        finally
+        {
+            _operationRepository.CreateAsync(operation, cancellationToken);
+        }
     }
+    
 }

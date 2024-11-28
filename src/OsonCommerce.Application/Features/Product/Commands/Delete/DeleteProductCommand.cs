@@ -1,9 +1,8 @@
 using MediatR;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class DeleteProductCommand : IRequest
 {
-    public class DeleteProductCommand : IRequest
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }

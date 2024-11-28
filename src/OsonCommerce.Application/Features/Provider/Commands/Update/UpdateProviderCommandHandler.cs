@@ -7,38 +7,34 @@ using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Exceptions;
 using OsonCommerce.Application.Interfaces.Repositories;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class UpdateProviderCommandHandler(
+    IRepository<Provider> repository, 
+    IValidator<UpdateProviderCommand> validator, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<UpdateProviderCommand>
 {
-    public class UpdateProviderCommandHandler : IRequestHandler<UpdateProviderCommand>
+    private readonly IRepository<Provider> _repository = repository;
+    private readonly IValidator<UpdateProviderCommand> _validator = validator;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
+    public async Task Handle(UpdateProviderCommand request, CancellationToken cancellationToken)
     {
-        private readonly IRepository<Provider> _repository;
-        private readonly IValidator<UpdateProviderCommand> _validator;
-        private readonly IUnitOfWork _unitOfWork;
+        await _validator.ValidateAsync(request, cancellationToken);
 
-        public UpdateProviderCommandHandler(IRepository<Provider> repository, IValidator<UpdateProviderCommand> validator, IUnitOfWork unitOfWork)
+        var provider = await _repository.GetByIdAsync(request.Id, cancellationToken);
+        if (provider == null)
         {
-            _repository = repository;
-            _validator = validator;
-            _unitOfWork = unitOfWork;
+            throw new NotFoundException("Provider not found");
         }
 
-        public async Task Handle(UpdateProviderCommand request, CancellationToken cancellationToken)
-        {
-            await _validator.ValidateAsync(request, cancellationToken);
+        provider.Name = request.Name;
+        provider.ContactInfo = request.ContactInfo;
+        provider.Address = request.Address;
+        provider.Description = request.Description;
 
-            var provider = await _repository.GetByIdAsync(request.Id, cancellationToken);
-            if (provider == null)
-            {
-                throw new NotFoundException("Provider not found");
-            }
-
-            provider.Name = request.Name;
-            provider.ContactInfo = request.ContactInfo;
-            provider.Address = request.Address;
-            provider.Description = request.Description;
-
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-        }
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
 

@@ -10,38 +10,32 @@ using OsonCommerce.Domain.Entities;
 using System.Reflection.Metadata;
 using OsonCommerce.Application.Interfaces.Repositories;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class LoginEmployeeCommandHandler(
+    IEmployeeRepository employeeRepository, 
+    IValidator<LoginEmployeeCommand> validator,
+    IJwtProvider jwtProvider, 
+    IPasswordHasher passwordHasher
+    ) : IRequestHandler<LoginEmployeeCommand, string>
 {
-    public class LoginEmployeeCommandHandler : IRequestHandler<LoginEmployeeCommand, string>
+    private readonly IEmployeeRepository _employeeRepository = employeeRepository;
+    private readonly IJwtProvider _jwtProvider = jwtProvider;
+    private readonly IPasswordHasher _passwordHasher = passwordHasher;
+    private readonly IValidator<LoginEmployeeCommand> _validator = validator;
+
+    public async Task<string> Handle(LoginEmployeeCommand request, CancellationToken cancellationToken)
     {
-        private readonly IEmployeeRepository _employeeRepository;
-        private readonly IJwtProvider _jwtProvider;
-        private readonly IPasswordHasher _passwordHasher;
-        private readonly IValidator<LoginEmployeeCommand> _validator;
+        await _validator.ValidateAndThrowAsync(request, cancellationToken);
+        var employee = await _employeeRepository.GetByEmailAsync(request.Email, cancellationToken);
 
-        public LoginEmployeeCommandHandler(
-            IEmployeeRepository employeeRepository, IValidator<LoginEmployeeCommand> validator,
-            IJwtProvider jwtProvider, IPasswordHasher passwordHasher)
+        var result = _passwordHasher.Verify(request.Password, employee.Password);
+
+        if(result == false)
         {
-            _employeeRepository = employeeRepository;
-            _jwtProvider = jwtProvider;
-            _passwordHasher = passwordHasher;
-            _validator = validator;
+            throw new Exception("not authorized");
         }
 
-        public async Task<string> Handle(LoginEmployeeCommand request, CancellationToken cancellationToken)
-        {
-            await _validator.ValidateAndThrowAsync(request, cancellationToken);
-            var employee = await _employeeRepository.GetByEmailAsync(request.Email, cancellationToken);
-
-            var result = _passwordHasher.Verify(request.Password, employee.Password);
-
-            if(result == false)
-            {
-                throw new Exception("not authorized");
-            }
-
-            return await _jwtProvider.GenerateToken(employee, cancellationToken);
-        }
+        return await _jwtProvider.GenerateToken(employee, cancellationToken);
     }
 }

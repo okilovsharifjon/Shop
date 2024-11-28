@@ -7,28 +7,27 @@ using OsonCommerce.Application.Exceptions;
 using OsonCommerce.Application.Interfaces.Repositories;
 
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class GetCashboxByIdQueryHandler : IRequestHandler<GetCashboxByIdQuery, CashboxDto>
 {
-    public class GetCashboxByIdQueryHandler : IRequestHandler<GetCashboxByIdQuery, CashboxDto>
+    private readonly ICashboxRepository _repository;
+    private readonly IMapper _mapper;
+
+    public GetCashboxByIdQueryHandler(ICashboxRepository repository, IMapper mapper)
     {
-        private readonly ICashboxRepository _repository;
-        private readonly IMapper _mapper;
+        _repository = repository;
+        _mapper = mapper;
+    }
 
-        public GetCashboxByIdQueryHandler(ICashboxRepository repository, IMapper mapper)
+    public async Task<CashboxDto> Handle(GetCashboxByIdQuery request, CancellationToken cancellationToken)
+    {
+        var cashbox = await _repository.GetByIdAsNoTrackingAsync(request.Id, cancellationToken);
+        if (cashbox == null)
         {
-            _repository = repository;
-            _mapper = mapper;
+            throw new NotFoundException("Cashbox not found");
         }
 
-        public async Task<CashboxDto> Handle(GetCashboxByIdQuery request, CancellationToken cancellationToken)
-        {
-            var cashbox = await _repository.GetByIdAsNoTrackingAsync(request.Id, cancellationToken);
-            if (cashbox == null)
-            {
-                throw new NotFoundException("Cashbox not found");
-            }
-
-            return _mapper.Map<CashboxDto>(cashbox);
-        }
+        return _mapper.Map<CashboxDto>(cashbox);
     }
 }

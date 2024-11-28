@@ -1,10 +1,9 @@
 using MediatR;
 using System.Collections.Generic;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class GetAllCashboxesQuery : IRequest<List<CashboxDto>>
 {
-    public class GetAllCashboxesQuery : IRequest<List<CashboxDto>>
-    {
-    }
 }
 

@@ -1,15 +1,14 @@
 using MediatR;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class CreateProviderCommand : IRequest<Guid>
 {
-    public class CreateProviderCommand : IRequest<Guid>
-    {
-        public string Name { get; set; }
-        public string ContactInfo { get; set; }
-        public string Address { get; set; }
-        public string Email { get; set; }
-        public string Description { get; set; }
-        public bool IsActive { get; set; }
-    }
+    public string Name { get; set; }
+    public string ContactInfo { get; set; }
+    public string Address { get; set; }
+    public string Email { get; set; }
+    public string Description { get; set; }
+    public bool IsActive { get; set; }
 }
 

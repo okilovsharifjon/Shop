@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OsonCommerce.Domain.Entities
+namespace OsonCommerce.Domain.Entities;
+
+public class Customer : User
 {
-    public class Customer : User
-    {
-        public string ShippingAddress { get; set; } //todo: not finished online side
-    }
+    public string ShippingAddress { get; set; } //todo: not finished online side
 }

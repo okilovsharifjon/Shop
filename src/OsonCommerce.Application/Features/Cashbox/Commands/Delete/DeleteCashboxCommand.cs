@@ -1,10 +1,9 @@
 using MediatR;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class DeleteCashboxCommand : IRequest
 {
-    public class DeleteCashboxCommand : IRequest
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }
 

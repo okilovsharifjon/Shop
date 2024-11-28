@@ -7,16 +7,12 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class GetEmployeeByIdQueryHandler : IRequestHandler<GetEmployeeByIdQuery, EmployeeDto>
+public class GetEmployeeByIdQueryHandler(
+    IEmployeeRepository repository, 
+    IMapper mapper) : IRequestHandler<GetEmployeeByIdQuery, EmployeeDto>
 {
-    private readonly IEmployeeRepository _repository;
-    private readonly IMapper _mapper;
-
-    public GetEmployeeByIdQueryHandler(IEmployeeRepository repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;   
-    }
+    private readonly IEmployeeRepository _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<EmployeeDto> Handle(GetEmployeeByIdQuery request, CancellationToken cancellationToken)
     {

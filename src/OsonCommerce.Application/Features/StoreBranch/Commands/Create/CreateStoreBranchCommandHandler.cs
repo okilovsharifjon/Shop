@@ -6,18 +6,15 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class CreateStoreBranchCommandHandler : IRequestHandler<CreateStoreBranchCommand, Guid>
+public class CreateStoreBranchCommandHandler(
+    IRepository<StoreBranch> repository, 
+    IUnitOfWork unitOfWork, 
+    IValidator<CreateStoreBranchCommand> validator
+    ) : IRequestHandler<CreateStoreBranchCommand, Guid>
 {
-    private readonly IRepository<StoreBranch> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<CreateStoreBranchCommand> _validator;
-
-    public CreateStoreBranchCommandHandler(IRepository<StoreBranch> repository, IUnitOfWork unitOfWork, IValidator<CreateStoreBranchCommand> validator)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-        _validator = validator;
-    }
+    private readonly IRepository<StoreBranch> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<CreateStoreBranchCommand> _validator = validator;
 
     public async Task<Guid> Handle(CreateStoreBranchCommand request, CancellationToken cancellationToken)
     {

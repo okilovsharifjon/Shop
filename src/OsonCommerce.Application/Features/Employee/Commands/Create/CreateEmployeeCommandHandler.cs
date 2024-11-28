@@ -6,18 +6,15 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class CreateEmployeeCommandHandler : IRequestHandler<CreateEmployeeCommand, Guid>
+public class CreateEmployeeCommandHandler(
+    IEmployeeRepository repository, 
+    IUnitOfWork unitOfWork, 
+    IValidator<CreateEmployeeCommand> validator
+    ) : IRequestHandler<CreateEmployeeCommand, Guid>
 {
-    private readonly IEmployeeRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<CreateEmployeeCommand> _validator;
-
-    public CreateEmployeeCommandHandler(IEmployeeRepository repository, IUnitOfWork unitOfWork, IValidator<CreateEmployeeCommand> validator)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-        _validator = validator;
-    }
+    private readonly IEmployeeRepository _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<CreateEmployeeCommand> _validator = validator;
 
     public async Task<Guid> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
     {

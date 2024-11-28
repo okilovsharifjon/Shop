@@ -7,18 +7,15 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class UpdateEmployeeCommandHandler : IRequestHandler<UpdateEmployeeCommand>
+public class UpdateEmployeeCommandHandler(
+    IEmployeeRepository repository, 
+    IUnitOfWork unitOfWork, 
+    IValidator<UpdateEmployeeCommand> validator
+    ) : IRequestHandler<UpdateEmployeeCommand>
 {
-    private readonly IEmployeeRepository _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<UpdateEmployeeCommand> _validator;
-
-    public UpdateEmployeeCommandHandler(IEmployeeRepository repository, IUnitOfWork unitOfWork, IValidator<UpdateEmployeeCommand> validator)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-        _validator = validator;
-    }
+    private readonly IEmployeeRepository _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<UpdateEmployeeCommand> _validator = validator;
 
     public async Task Handle(UpdateEmployeeCommand request, CancellationToken cancellationToken)
     {

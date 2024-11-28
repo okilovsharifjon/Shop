@@ -6,16 +6,13 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class DeleteProductInStockCommandHandler : IRequestHandler<DeleteProductInStockCommand>
+public class DeleteProductInStockCommandHandler(
+    IRepository<ProductInStock> repository, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<DeleteProductInStockCommand>
 {
-    private readonly IRepository<ProductInStock> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public DeleteProductInStockCommandHandler(IRepository<ProductInStock> repository, IUnitOfWork unitOfWork)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-    }
+    private readonly IRepository<ProductInStock> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task Handle(DeleteProductInStockCommand request, CancellationToken cancellationToken)
     {

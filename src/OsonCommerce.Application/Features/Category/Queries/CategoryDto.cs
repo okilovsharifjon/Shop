@@ -1,5 +1,5 @@
 using AutoMapper;
-using OsonCommerce.Application.Mappers;
+using OsonCommerce.Application.Common.Mappers;
 using OsonCommerce.Domain.Entities;
 
 namespace OsonCommerce.Application.Features;

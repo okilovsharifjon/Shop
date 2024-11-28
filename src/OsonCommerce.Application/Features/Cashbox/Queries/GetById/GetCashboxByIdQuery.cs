@@ -1,10 +1,9 @@
 using MediatR;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class GetCashboxByIdQuery : IRequest<CashboxDto>
 {
-    public class GetCashboxByIdQuery : IRequest<CashboxDto>
-    {
-        public Guid Id { get; set; }
-    }
+    public Guid Id { get; set; }
 }
 

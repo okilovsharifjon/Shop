@@ -22,4 +22,8 @@
     <ProjectReference Include="..\OsonCommerce.Infrastructure\OsonCommerce.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+  </ItemGroup>
+
 </Project>

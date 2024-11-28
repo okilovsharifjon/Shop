@@ -6,37 +6,36 @@ using OsonCommerce.Infrastructure.Authentication;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace OsonCommerce.Web.Extensions
+namespace OsonCommerce.Web.Extensions;
+
+public static class WebExtensions
 {
-    public static class WebExtensions
+    public static void AddWebAuthentication(
+        this IServiceCollection services,
+        IOptions<JwtOptions> jwtOptions)
     {
-        public static void AddWebAuthentication(
-            this IServiceCollection services,
-            IOptions<JwtOptions> jwtOptions)
-        {
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            {
+                options.TokenValidationParameters = new()
                 {
-                    options.TokenValidationParameters = new()
-                    {
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(jwtOptions.Value.SecretKey))
-                    };
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                        Encoding.UTF8.GetBytes(jwtOptions.Value.SecretKey))
+                };
 
-                    options.Events = new()
+                options.Events = new()
+                {
+                    OnMessageReceived = context =>
                     {
-                        OnMessageReceived = context =>
-                        {
-                            context.Token = context.Request.Cookies["delicious-cookies"];
+                        context.Token = context.Request.Cookies["delicious-cookies"];
 
-                            return Task.CompletedTask;
-                        }
-                    };
-                });
-        }
+                        return Task.CompletedTask;
+                    }
+                };
+            });
     }
 }

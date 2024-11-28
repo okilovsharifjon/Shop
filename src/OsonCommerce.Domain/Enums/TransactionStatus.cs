@@ -1,9 +1,8 @@
-namespace OsonCommerce.Domain.Enums
+namespace OsonCommerce.Domain.Enums;
+
+public enum TransactionStatus
 {
-    public enum TransactionStatus
-{
-        Pending,
-        Completed,  
-        Failed
-    }
+    Pending,
+    Completed,  
+    Failed
 }

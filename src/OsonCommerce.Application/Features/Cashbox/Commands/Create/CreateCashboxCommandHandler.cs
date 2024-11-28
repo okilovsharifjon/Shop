@@ -6,43 +6,39 @@ using FluentValidation;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Application.Interfaces.Repositories;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class CreateCashboxCommandHandler(
+    ICashboxRepository repository, 
+    IValidator<CreateCashboxCommand> validator, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<CreateCashboxCommand, Guid>
 {
-    public class CreateCashboxCommandHandler : IRequestHandler<CreateCashboxCommand, Guid>
+    private readonly ICashboxRepository _repository = repository;
+    private readonly IValidator<CreateCashboxCommand> _validator = validator;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
+    public async Task<Guid> Handle(CreateCashboxCommand request, CancellationToken cancellationToken)
     {
-        private readonly ICashboxRepository _repository;
-        private readonly IValidator<CreateCashboxCommand> _validator;
-        private readonly IUnitOfWork _unitOfWork;
+        await _validator.ValidateAsync(request, cancellationToken);
 
-        public CreateCashboxCommandHandler(ICashboxRepository repository, IValidator<CreateCashboxCommand> validator, IUnitOfWork unitOfWork)
+        var cashbox = new Cashbox
         {
-            _repository = repository;
-            _validator = validator;
-            _unitOfWork = unitOfWork;
-        }
+            Id = Guid.NewGuid(),
+            Name = request.Name,
+            Balance = request.Balance,
+            Key = request.Key,
+            IsActive = true,
+            LastUpdatedDate = DateTime.Now,
+            StoreBranchId = request.StoreBranchId,
+            CashierIds = request.ChashierIds
+        };
 
-        public async Task<Guid> Handle(CreateCashboxCommand request, CancellationToken cancellationToken)
-        {
-            await _validator.ValidateAsync(request, cancellationToken);
-
-            var cashbox = new Cashbox
-            {
-                Id = Guid.NewGuid(),
-                Name = request.Name,
-                Balance = request.Balance,
-                Key = request.Key,
-                IsActive = true,
-                LastUpdatedDate = DateTime.Now,
-                StoreBranchId = request.StoreBranchId,
-                CashierIds = request.ChashierIds
-            };
-
-            await _repository.CreateAsync(cashbox, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return cashbox.Id;
-        }
-
-
+        await _repository.CreateAsync(cashbox, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return cashbox.Id;
     }
+
+
 }
 

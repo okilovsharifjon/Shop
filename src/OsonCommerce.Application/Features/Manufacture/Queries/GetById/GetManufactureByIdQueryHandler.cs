@@ -5,16 +5,13 @@ using OsonCommerce.Application.Exceptions;
 using OsonCommerce.Application.Interfaces.Repositories;
 namespace OsonCommerce.Application.Features;
 
-public class GetManufactureByIdQueryHandler : IRequestHandler<GetManufactureByIdQuery, ManufactureDto>
+public class GetManufactureByIdQueryHandler(
+    IRepository<Manufacture> repository, 
+    IMapper mapper
+    ) : IRequestHandler<GetManufactureByIdQuery, ManufactureDto>
 {
-    private readonly IRepository<Manufacture> _repository;
-    private readonly IMapper _mapper;
-
-    public GetManufactureByIdQueryHandler(IRepository<Manufacture> repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-    }
+    private readonly IRepository<Manufacture> _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<ManufactureDto> Handle(GetManufactureByIdQuery request, CancellationToken cancellationToken)
     {

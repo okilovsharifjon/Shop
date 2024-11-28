@@ -6,16 +6,13 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class GetAllCategoriesQueryHandler : IRequestHandler<GetAllCategoriesQuery, List<CategoryDto>>
+public class GetAllCategoriesQueryHandler(
+    IRepository<Category> repository, 
+    IMapper mapper
+    ) : IRequestHandler<GetAllCategoriesQuery, List<CategoryDto>>
 {
-    private readonly IRepository<Category> _repository;
-    private readonly IMapper _mapper;
-
-    public GetAllCategoriesQueryHandler(IRepository<Category> repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-    }
+    private readonly IRepository<Category> _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<List<CategoryDto>> Handle(GetAllCategoriesQuery request, CancellationToken cancellationToken)
     {

@@ -7,18 +7,15 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class UpdateStoreBranchCommandHandler : IRequestHandler<UpdateStoreBranchCommand>
+public class UpdateStoreBranchCommandHandler(
+    IRepository<StoreBranch> repository, 
+    IUnitOfWork unitOfWork, 
+    IValidator<UpdateStoreBranchCommand> validator
+    ) : IRequestHandler<UpdateStoreBranchCommand>
 {
-    private readonly IRepository<StoreBranch> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<UpdateStoreBranchCommand> _validator;
-
-    public UpdateStoreBranchCommandHandler(IRepository<StoreBranch> repository, IUnitOfWork unitOfWork, IValidator<UpdateStoreBranchCommand> validator)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-        _validator = validator;
-    }
+    private readonly IRepository<StoreBranch> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<UpdateStoreBranchCommand> _validator = validator;
 
     public async Task Handle(UpdateStoreBranchCommand request, CancellationToken cancellationToken)
     {

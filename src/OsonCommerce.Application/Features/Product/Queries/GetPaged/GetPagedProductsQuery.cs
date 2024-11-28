@@ -1,5 +1,5 @@
 using MediatR;
-using OsonCommerce.Application.Models;
+using OsonCommerce.Application.Common.Models;
 
 namespace OsonCommerce.Application.Features;
 

@@ -5,13 +5,11 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Infrastructure.Repositories;
 
-public class CashboxRepository : Repository<Cashbox>, ICashboxRepository
+public class CashboxRepository(
+    OsonCommerceDbContext context
+    ) : Repository<Cashbox>(context), ICashboxRepository
 {
-    private readonly OsonCommerceDbContext _context;
-    public CashboxRepository(OsonCommerceDbContext context) : base(context)
-    {
-        _context = context;
-    }
+    private readonly OsonCommerceDbContext _context = context;
 
     public async Task<Cashbox> GetCashboxWithDetailsAsync(Guid id, CancellationToken cancellationToken)
     {

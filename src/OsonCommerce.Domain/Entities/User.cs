@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace OsonCommerce.Domain.Entities;
 
-namespace OsonCommerce.Domain.Entities
+public abstract class User
 {
-    public abstract class User
-    {
-        public Guid Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Password { get; set; }
-        public ICollection<UserRole> UserRoles { get; set; }
-    }
+    public Guid Id { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public string PhoneNumber { get; set; }
+    public string Password { get; set; }
+    public ICollection<UserRole> UserRoles { get; set; }
 }

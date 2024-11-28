@@ -5,15 +5,13 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class GetAllProductInStocksQueryHandler : IRequestHandler<GetAllProductInStocksQuery, List<ProductInStockDto>>
+public class GetAllProductInStocksQueryHandler(
+    IRepository<ProductInStock> repository, 
+    IMapper mapper
+    ) : IRequestHandler<GetAllProductInStocksQuery, List<ProductInStockDto>>
 {
-    private readonly IRepository<ProductInStock> _repository;
-    private readonly IMapper _mapper;
-    public GetAllProductInStocksQueryHandler(IRepository<ProductInStock> repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-    }
+    private readonly IRepository<ProductInStock> _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<List<ProductInStockDto>> Handle(GetAllProductInStocksQuery request, CancellationToken cancellationToken)
     {

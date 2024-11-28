@@ -404,6 +404,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OsonCommerce.Web.Controllers.PriceTypeController",
+    "Method": "Create",
+    "RelativePath": "api/price_type",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreatePriceTypeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.PriceTypeController",
+    "Method": "Update",
+    "RelativePath": "api/price_type",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdatePriceTypeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.PriceTypeController",
+    "Method": "GetById",
+    "RelativePath": "api/price_type/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetPriceTypeByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.PriceTypeController",
+    "Method": "Delete",
+    "RelativePath": "api/price_type/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeletePriceTypeCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OsonCommerce.Web.Controllers.ProductController",
     "Method": "Create",
     "RelativePath": "api/product",
@@ -600,6 +674,80 @@
       {
         "Name": "Id",
         "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductPriceController",
+    "Method": "Create",
+    "RelativePath": "api/product_price",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateProductPriceCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductPriceController",
+    "Method": "Update",
+    "RelativePath": "api/product_price",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateProductPriceCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductPriceController",
+    "Method": "GetById",
+    "RelativePath": "api/product_price/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetProductPriceByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductPriceController",
+    "Method": "Delete",
+    "RelativePath": "api/product_price/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteProductPriceCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
         "IsRequired": true
       }
     ],

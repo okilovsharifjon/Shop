@@ -6,16 +6,13 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class GetAllStoreBranchesQueryHandler : IRequestHandler<GetAllStoreBranchesQuery, List<StoreBranchDto>>
+public class GetAllStoreBranchesQueryHandler(
+    IRepository<StoreBranch> repository, 
+    IMapper mapper
+    ) : IRequestHandler<GetAllStoreBranchesQuery, List<StoreBranchDto>>
 {
-    private readonly IRepository<StoreBranch> _repository;
-    private readonly IMapper _mapper;
-
-    public GetAllStoreBranchesQueryHandler(IRepository<StoreBranch> repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-    }
+    private readonly IRepository<StoreBranch> _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<List<StoreBranchDto>> Handle(GetAllStoreBranchesQuery request, CancellationToken cancellationToken)
     {

@@ -8,14 +8,9 @@ namespace OsonCommerce.Web.Controllers;
 
 [ApiController]
 [Route("api/cashbox")]
-public class CashboxController : ControllerBase
+public class CashboxController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public CashboxController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     [Authorize(Roles = "Admin, Manager")]
     [HttpPost]

@@ -6,18 +6,14 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class CreateManufactureCommandHandler : IRequestHandler<CreateManufactureCommand, Guid>
+public class CreateManufactureCommandHandler(
+    IRepository<Manufacture> repository, 
+    IUnitOfWork unitOfWork, IValidator<CreateManufactureCommand> validator
+    ) : IRequestHandler<CreateManufactureCommand, Guid>
 {
-    private readonly IRepository<Manufacture> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<CreateManufactureCommand> _validator;
-
-    public CreateManufactureCommandHandler(IRepository<Manufacture> repository, IUnitOfWork unitOfWork, IValidator<CreateManufactureCommand> validator)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-        _validator = validator;
-    }
+    private readonly IRepository<Manufacture> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<CreateManufactureCommand> _validator = validator;
 
     public async Task<Guid> Handle(CreateManufactureCommand request, CancellationToken cancellationToken)
     {

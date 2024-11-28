@@ -7,16 +7,12 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class DeleteManufactureCommandHandler : IRequestHandler<DeleteManufactureCommand>
+public class DeleteManufactureCommandHandler(
+    IRepository<Manufacture> repository, 
+    IUnitOfWork unitOfWork) : IRequestHandler<DeleteManufactureCommand>
 {
-    private readonly IRepository<Manufacture> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public DeleteManufactureCommandHandler(IRepository<Manufacture> repository, IUnitOfWork unitOfWork)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-    }
+    private readonly IRepository<Manufacture> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task Handle(DeleteManufactureCommand request, CancellationToken cancellationToken)
     {

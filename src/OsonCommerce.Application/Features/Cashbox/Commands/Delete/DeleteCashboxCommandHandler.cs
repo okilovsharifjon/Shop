@@ -6,29 +6,25 @@ using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Application.Exceptions;
 using OsonCommerce.Application.Interfaces.Repositories;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class DeleteCashboxCommandHandler(
+    ICashboxRepository repository, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<DeleteCashboxCommand>
 {
-    public class DeleteCashboxCommandHandler : IRequestHandler<DeleteCashboxCommand>
+    private readonly ICashboxRepository _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
+    public async Task Handle(DeleteCashboxCommand request, CancellationToken cancellationToken)
     {
-        private readonly ICashboxRepository _repository;
-        private readonly IUnitOfWork _unitOfWork;
-
-        public DeleteCashboxCommandHandler(ICashboxRepository repository, IUnitOfWork unitOfWork)
+        if (request.Id == Guid.Empty)
         {
-            _repository = repository;
-            _unitOfWork = unitOfWork;
+            throw new EmptyRequestException("Id is required");
         }
 
-        public async Task Handle(DeleteCashboxCommand request, CancellationToken cancellationToken)
-        {
-            if (request.Id == Guid.Empty)
-            {
-                throw new EmptyRequestException("Id is required");
-            }
-
-            await _repository.DeleteAsync(request.Id, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-        }
+        await _repository.DeleteAsync(request.Id, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
 

@@ -6,40 +6,36 @@ using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Interfaces.Repositories;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class CreateProviderCommandHandler(
+    IRepository<Provider> repository, 
+    IValidator<CreateProviderCommand> validator, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<CreateProviderCommand, Guid>
 {
-    public class CreateProviderCommandHandler : IRequestHandler<CreateProviderCommand, Guid>
+    private readonly IRepository<Provider> _repository = repository;
+    private readonly IValidator<CreateProviderCommand> _validator = validator;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
+    public async Task<Guid> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
     {
-        private readonly IRepository<Provider> _repository;
-        private readonly IValidator<CreateProviderCommand> _validator;
-        private readonly IUnitOfWork _unitOfWork;   
+        await _validator.ValidateAsync(request, cancellationToken);
 
-        public CreateProviderCommandHandler(IRepository<Provider> repository, IValidator<CreateProviderCommand> validator, IUnitOfWork unitOfWork)
+        var provider = new Provider
         {
-            _repository = repository;
-            _validator = validator;
-            _unitOfWork = unitOfWork;
-        }
+            Id = Guid.NewGuid(),
+            Name = request.Name,
+            ContactInfo = request.ContactInfo,
+            Address = request.Address,
+            Email = request.Email,
+            Description = request.Description,
+            IsActive = request.IsActive
+        };
 
-        public async Task<Guid> Handle(CreateProviderCommand request, CancellationToken cancellationToken)
-        {
-            await _validator.ValidateAsync(request, cancellationToken);
-
-            var provider = new Provider
-            {
-                Id = Guid.NewGuid(),
-                Name = request.Name,
-                ContactInfo = request.ContactInfo,
-                Address = request.Address,
-                Email = request.Email,
-                Description = request.Description,
-                IsActive = request.IsActive
-            };
-
-            await _repository.CreateAsync(provider, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return provider.Id;
-        }
+        await _repository.CreateAsync(provider, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return provider.Id;
     }
 }
 

@@ -1,8 +1,7 @@
-namespace OsonCommerce.Application.Interfaces
-{
+namespace OsonCommerce.Application.Interfaces;
+
 public interface IPasswordHasher
 {
-    string Generate(string password);
-    bool Verify(string password, string hashedPassword);
-}
+string Generate(string password);
+bool Verify(string password, string hashedPassword);
 }

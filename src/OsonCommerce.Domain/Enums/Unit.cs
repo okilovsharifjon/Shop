@@ -1,11 +1,10 @@
-﻿namespace OsonCommerce.Domain.Enums
+﻿namespace OsonCommerce.Domain.Enums;
+
+public enum Unit
 {
-    public enum Unit
-    {
-        Kilogram,
-        Gram,
-        Meter,
-        Centimeter,
-        Liter
-    }
+    Kilogram,
+    Gram,
+    Meter,
+    Centimeter,
+    Liter
 }

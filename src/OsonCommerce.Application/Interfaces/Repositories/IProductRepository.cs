@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OsonCommerce.Application.Interfaces.Repositories
+namespace OsonCommerce.Application.Interfaces.Repositories;
+
+public interface IProductRepository : IRepository<Product>
 {
-    public interface IProductRepository : IRepository<Product>
-    {
-        Task<Product> GetBySku(string sku, CancellationToken cancellationToken);
-    }
+    Task<Product> GetBySku(string sku, CancellationToken cancellationToken);
 }

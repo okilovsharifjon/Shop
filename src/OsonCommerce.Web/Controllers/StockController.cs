@@ -8,14 +8,9 @@ namespace OsonCommerce.Web.Controllers;
 [Authorize(Roles = "Admin, Manager")]
 [ApiController]
 [Route("api/stock")]
-public class StockController : ControllerBase
+public class StockController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public StockController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateStockCommand command, CancellationToken cancellationToken)

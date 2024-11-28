@@ -1,13 +1,11 @@
 using FluentValidation;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class DeleteStockCommandValidator : AbstractValidator<DeleteStockCommand>
 {
-    public class DeleteStockCommandValidator : AbstractValidator<DeleteStockCommand>
+    public DeleteStockCommandValidator()
     {
-        public DeleteStockCommandValidator()
-        {
-            RuleFor(command => command.Id).NotEmpty();
-        }
+        RuleFor(command => command.Id).NotEmpty();
     }
 }
-    

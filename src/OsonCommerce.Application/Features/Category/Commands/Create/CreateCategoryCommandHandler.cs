@@ -6,18 +6,15 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Guid>
+public class CreateCategoryCommandHandler(
+    IRepository<Category> repository, 
+    IValidator<CreateCategoryCommand> validator, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<CreateCategoryCommand, Guid>
 {
-    private readonly IRepository<Category> _repository;
-    private readonly IValidator<CreateCategoryCommand> _validator;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public CreateCategoryCommandHandler(IRepository<Category> repository, IValidator<CreateCategoryCommand> validator, IUnitOfWork unitOfWork)
-    {
-        _repository = repository;
-        _validator = validator;
-        _unitOfWork = unitOfWork;
-    }
+    private readonly IRepository<Category> _repository = repository;
+    private readonly IValidator<CreateCategoryCommand> _validator = validator;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task<Guid> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {

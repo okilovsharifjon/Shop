@@ -8,14 +8,9 @@ namespace OsonCommerce.Web.Controllers;
 [Authorize(Roles = "Admin, Manager")]
 [ApiController]
 [Route("api/product")]
-public class ProductController : ControllerBase
+public class ProductController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public ProductController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateProductCommand command, CancellationToken cancellationToken)

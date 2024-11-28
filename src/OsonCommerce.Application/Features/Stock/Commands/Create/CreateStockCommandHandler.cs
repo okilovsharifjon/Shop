@@ -6,41 +6,37 @@ using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Interfaces.Repositories;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class CreateStockCommandHandler(
+    IRepository<Stock> repository, 
+    IValidator<CreateStockCommand> validator, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<CreateStockCommand, Guid>
 {
-    public class CreateStockCommandHandler : IRequestHandler<CreateStockCommand, Guid>
+    private readonly IRepository<Stock> _repository = repository;
+    private readonly IValidator<CreateStockCommand> _validator = validator;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
+    public async Task<Guid> Handle(CreateStockCommand request, CancellationToken cancellationToken)
     {
-        private readonly IRepository<Stock> _repository;
-        private readonly IValidator<CreateStockCommand> _validator;
-        private readonly IUnitOfWork _unitOfWork;
+        await _validator.ValidateAsync(request, cancellationToken);
 
-        public CreateStockCommandHandler(IRepository<Stock> repository, IValidator<CreateStockCommand> validator, IUnitOfWork unitOfWork)
+        var stock = new Stock
         {
-            _repository = repository;
-            _validator = validator;
-            _unitOfWork = unitOfWork;
-        }
+            Id = Guid.NewGuid(),
+            Name = request.Name,
+            StockCode = request.StockCode,
+            Location = request.Location,
+            Capacity = request.Capacity,
+            CurrentLoad = request.CurrentLoad,
+            PhoneNumber = request.PhoneNumber,
+            IsAvailable = request.IsAvailable
+        };
 
-        public async Task<Guid> Handle(CreateStockCommand request, CancellationToken cancellationToken)
-        {
-            await _validator.ValidateAsync(request, cancellationToken);
-
-            var stock = new Stock
-            {
-                Id = Guid.NewGuid(),
-                Name = request.Name,
-                StockCode = request.StockCode,
-                Location = request.Location,
-                Capacity = request.Capacity,
-                CurrentLoad = request.CurrentLoad,
-                PhoneNumber = request.PhoneNumber,
-                IsAvailable = request.IsAvailable
-            };
-
-            await _repository.CreateAsync(stock, cancellationToken);
-            await _unitOfWork.SaveChangesAsync(cancellationToken);
-            return stock.Id;
-        }
+        await _repository.CreateAsync(stock, cancellationToken);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+        return stock.Id;
     }
 }
 

@@ -1,14 +1,13 @@
 using FluentValidation;
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class AddMoneyToCashboxCommandValidator : AbstractValidator<AddMoneyToCashboxCommand>
 {
-    public class AddMoneyToCashboxCommandValidator : AbstractValidator<AddMoneyToCashboxCommand>
+    public AddMoneyToCashboxCommandValidator()
     {
-        public AddMoneyToCashboxCommandValidator()
-        {
-            RuleFor(x => x.Amount).GreaterThan(0);
-            RuleFor(x => x.CashboxId).NotEmpty();
-        }
+        RuleFor(x => x.Amount).GreaterThan(0);
+        RuleFor(x => x.CashboxId).NotEmpty();
     }
 }
 

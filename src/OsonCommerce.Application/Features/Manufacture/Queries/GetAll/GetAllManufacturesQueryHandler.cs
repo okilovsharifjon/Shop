@@ -4,16 +4,13 @@ using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Interfaces.Repositories;
 namespace OsonCommerce.Application.Features;
 
-public class GetAllManufacturesQueryHandler : IRequestHandler<GetAllManufacturesQuery, List<ManufactureDto>>
+public class GetAllManufacturesQueryHandler(
+    IRepository<Manufacture> repository, 
+    IMapper mapper
+    ) : IRequestHandler<GetAllManufacturesQuery, List<ManufactureDto>>
 {
-    private readonly IRepository<Manufacture> _repository;
-    private readonly IMapper _mapper;
-
-    public GetAllManufacturesQueryHandler(IRepository<Manufacture> repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-    }
+    private readonly IRepository<Manufacture> _repository = repository;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<List<ManufactureDto>> Handle(GetAllManufacturesQuery request, CancellationToken cancellationToken)
     {

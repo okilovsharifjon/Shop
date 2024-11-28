@@ -6,18 +6,15 @@ using OsonCommerce.Application.Interfaces.Repositories;
 
 namespace OsonCommerce.Application.Features;
 
-public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand>
+public class UpdateCategoryCommandHandler(
+    IRepository<Category> repository, 
+    IUnitOfWork unitOfWork, 
+    IValidator<UpdateCategoryCommand> validator
+    ) : IRequestHandler<UpdateCategoryCommand>
 {
-    private readonly IRepository<Category> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IValidator<UpdateCategoryCommand> _validator;
-
-    public UpdateCategoryCommandHandler(IRepository<Category> repository, IUnitOfWork unitOfWork, IValidator<UpdateCategoryCommand> validator)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-        _validator = validator;
-    }
+    private readonly IRepository<Category> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+    private readonly IValidator<UpdateCategoryCommand> _validator = validator;
 
     public async Task Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
     {

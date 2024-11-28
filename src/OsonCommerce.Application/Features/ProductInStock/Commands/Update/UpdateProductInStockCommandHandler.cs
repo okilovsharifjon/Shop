@@ -6,16 +6,13 @@ using OsonCommerce.Domain.Entities;
 
 namespace OsonCommerce.Application.Features;
 
-public class UpdateProductInStockCommandHandler : IRequestHandler<UpdateProductInStockCommand>
+public class UpdateProductInStockCommandHandler(
+    IRepository<ProductInStock> repository, 
+    IUnitOfWork unitOfWork
+    ) : IRequestHandler<UpdateProductInStockCommand>
 {
-    private readonly IRepository<ProductInStock> _repository;
-    private readonly IUnitOfWork _unitOfWork;
-
-    public UpdateProductInStockCommandHandler(IRepository<ProductInStock> repository, IUnitOfWork unitOfWork)
-    {
-        _repository = repository;
-        _unitOfWork = unitOfWork;
-    }
+    private readonly IRepository<ProductInStock> _repository = repository;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
     public async Task Handle(UpdateProductInStockCommand request, CancellationToken cancellationToken)
     {

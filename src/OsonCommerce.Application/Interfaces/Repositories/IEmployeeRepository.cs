@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OsonCommerce.Application.Interfaces.Repositories
+namespace OsonCommerce.Application.Interfaces.Repositories;
+
+public interface IEmployeeRepository : IRepository<Employee>    
 {
-    public interface IEmployeeRepository : IRepository<Employee>    
-    {
-        Task<Employee> GetByEmailAsync(string email, CancellationToken cancellationToken);
+    Task<Employee> GetByEmailAsync(string email, CancellationToken cancellationToken);
 
 
-    }
 }

@@ -7,29 +7,25 @@ using OsonCommerce.Application.Exceptions;
 using OsonCommerce.Application.Interfaces.Repositories;
 
 
-namespace OsonCommerce.Application.Features
+namespace OsonCommerce.Application.Features;
+
+public class GetStockByIdQueryHandler(
+    IRepository<Stock> repository, 
+    IMapper mapper
+    ) : IRequestHandler<GetStockByIdQuery, StockDto>
 {
-    public class GetStockByIdQueryHandler : IRequestHandler<GetStockByIdQuery, StockDto>
+    private readonly IRepository<Stock> _repository = repository;
+    private readonly IMapper _mapper = mapper;
+
+    public async Task<StockDto> Handle(GetStockByIdQuery request, CancellationToken cancellationToken)
     {
-        private readonly IRepository<Stock> _repository;
-        private readonly IMapper _mapper;
-
-        public GetStockByIdQueryHandler(IRepository<Stock> repository, IMapper mapper)
+        var stock = await _repository.GetByIdAsNoTrackingAsync(request.Id, cancellationToken);
+        if (stock == null)
         {
-            _repository = repository;
-            _mapper = mapper;
+            throw new NotFoundException("Stock not found");
         }
 
-        public async Task<StockDto> Handle(GetStockByIdQuery request, CancellationToken cancellationToken)
-        {
-            var stock = await _repository.GetByIdAsNoTrackingAsync(request.Id, cancellationToken);
-            if (stock == null)
-            {
-                throw new NotFoundException("Stock not found");
-            }
-
-            return _mapper.Map<StockDto>(stock);
-        }
+        return _mapper.Map<StockDto>(stock);
     }
 }
 

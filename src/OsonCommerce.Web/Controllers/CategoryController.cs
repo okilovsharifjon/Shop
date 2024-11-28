@@ -8,14 +8,9 @@ namespace OsonCommerce.Web.Controllers;
 [Authorize(Roles = "Admin, Manager")]
 [ApiController]
 [Route("api/category")]
-public class CategoryController : ControllerBase
+public class CategoryController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator;
-
-    public CategoryController(IMediator mediator)
-    {
-        _mediator = mediator;
-    }
+    private readonly IMediator _mediator = mediator;
 
     [HttpPost]
     public async Task<IActionResult> Create(CreateCategoryCommand command, CancellationToken cancellationToken)
