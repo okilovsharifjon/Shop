@@ -584,6 +584,80 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductAttributeController",
+    "Method": "Create",
+    "RelativePath": "api/product_attribute",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.CreateProductAttributeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductAttributeController",
+    "Method": "Update",
+    "RelativePath": "api/product_attribute",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.UpdateProductAttributeCommand",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductAttributeController",
+    "Method": "GetById",
+    "RelativePath": "api/product_attribute/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "query",
+        "Type": "OsonCommerce.Application.Features.GetProductAttributeByIdQuery",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "OsonCommerce.Web.Controllers.ProductAttributeController",
+    "Method": "Delete",
+    "RelativePath": "api/product_attribute/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "command",
+        "Type": "OsonCommerce.Application.Features.DeleteProductAttributeCommand",
+        "IsRequired": true
+      },
+      {
+        "Name": "id",
+        "Type": "",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "OsonCommerce.Web.Controllers.ProductInStockController",
     "Method": "CreateProductInStock",
     "RelativePath": "api/product_in_stock",

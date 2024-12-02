@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using OsonCommerce.Application.Interfaces;
 using OsonCommerce.Domain.Entities;
 using OsonCommerce.Application.Interfaces.Repositories;
-using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Application.Common.Exceptions;
 
 namespace OsonCommerce.Application.Features;
 

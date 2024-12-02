@@ -1,0 +1,1 @@
+2024-11-28 16:16:22.282 +03:00 [INF] Notes Request: LoginEmployeeCommand "00000000-0000-0000-0000-000000000000" {"Email":"string","Password":"string","$type":"LoginEmployeeCommand"}

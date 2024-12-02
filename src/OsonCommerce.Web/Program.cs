@@ -4,6 +4,16 @@ using OsonCommerce.Web.Extensions;
 using Microsoft.Extensions.Options;
 using OsonCommerce.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using OsonCommerce.Application.Interfaces;
+using OsonCommerce.Web.Services;
+using Serilog;
+using Serilog.Events;
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .WriteTo.File("OsonCommerceWebAppLog-.txt", rollingInterval:
+    RollingInterval.Day)
+    .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +31,7 @@ builder.Services.AddWebAuthentication(builder.Services.BuildServiceProvider().Ge
 
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddSingleton<ICurrentUserService, CurrentUserService>();
 
 var app = builder.Build();
 

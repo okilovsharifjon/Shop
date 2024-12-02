@@ -1,4 +1,4 @@
-using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Application.Common.Exceptions;
 using OsonCommerce.Domain.Entities;
 using System.Net.NetworkInformation;
 using MediatR;

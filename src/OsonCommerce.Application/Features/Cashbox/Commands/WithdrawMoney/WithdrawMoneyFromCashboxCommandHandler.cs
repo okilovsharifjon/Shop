@@ -1,6 +1,6 @@
 using MediatR;
 using OsonCommerce.Domain.Entities;
-using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Application.Common.Exceptions;
 using System.Net.NetworkInformation;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;

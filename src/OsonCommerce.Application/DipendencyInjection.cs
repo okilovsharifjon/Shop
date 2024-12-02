@@ -1,16 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using OsonCommerce.Application.Features;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MediatR;
 using FluentValidation;
-using Microsoft.Extensions.DependencyInjection;
-using OsonCommerce.Application.Features;
-using OsonCommerce.Application.Mappers;
+using OsonCommerce.Application.Common.Mappers;
 using System.Reflection;
+using MediatR;
+using OsonCommerce.Application.Common.Behavior;
 
 namespace OsonCommerce.Application
 {
@@ -29,6 +23,8 @@ namespace OsonCommerce.Application
                 }
                 catch { } 
             }
+            services.AddTransient(typeof(IPipelineBehavior<,>),
+                typeof(LoggingBehavior<,>));
             return services;
         }
     }

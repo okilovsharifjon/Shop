@@ -2,7 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using OsonCommerce.Domain.Entities;
-using OsonCommerce.Application.Exceptions;
+using OsonCommerce.Application.Common.Exceptions;
 using MediatR;
 using FluentValidation;
 using OsonCommerce.Application.Interfaces;
