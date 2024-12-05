@@ -12,21 +12,27 @@ public class StoreBranchConfiguration : IEntityTypeConfiguration<StoreBranch>
         builder.HasKey(sb => sb.Id);
 
         builder.Property(sb => sb.Name)
+            .HasColumnName("name")
             .IsRequired()
             .HasMaxLength(100);
 
         builder.Property(sb => sb.ManagerIds)
+            .HasColumnType("uuid[]")
             .HasColumnName("manager_ids")
             .IsRequired();
 
         builder.Property(sb => sb.Address)
-            .IsRequired()
+            .HasColumnName("address")
+            .IsRequired(false)
             .HasMaxLength(200);
 
         builder.Property(sb => sb.PhoneNumber)
+            .HasColumnName("phone_number")
+            .IsRequired(false)
             .HasMaxLength(15);
 
         builder.Property(sb => sb.Email)
+            .HasColumnName("email")
             .HasMaxLength(100);
 
         builder.Property(sb => sb.OperatingHours)

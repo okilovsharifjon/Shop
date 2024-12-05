@@ -10,4 +10,5 @@ public class Stock
     public int CurrentLoad { get; set; }
     public string PhoneNumber { get; set; }
     public bool IsAvailable { get; set; }
+    public ICollection<ProductInStock> ProductsInStock { get; set; }
 }

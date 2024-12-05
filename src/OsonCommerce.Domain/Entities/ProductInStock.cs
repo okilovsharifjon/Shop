@@ -10,8 +10,8 @@ public class ProductInStock
     public bool IsAvailable { get; set; }
     public DateTime LastUpdated { get; set; }
     public Guid ProductPriceId { get; set; }
-    public virtual ProductPrice ProductPrice { get; set; }
-    public virtual Stock Stock { get; set; }
-    public virtual Provider Provider { get; set; }
-    public virtual Product Product { get; set; }
+    public ProductPrice ProductPrice { get; set; }
+    public Stock Stock { get; set; }
+    public Provider Provider { get; set; }
+    public Product Product { get; set; }
 }

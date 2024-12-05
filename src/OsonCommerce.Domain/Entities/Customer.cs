@@ -8,5 +8,6 @@ namespace OsonCommerce.Domain.Entities;
 
 public class Customer : User
 {
-    public string ShippingAddress { get; set; } //todo: not finished online side
+    public string ShippingAddress { get; set; }
+    public ICollection<Order> Orders { get; set; }
 }

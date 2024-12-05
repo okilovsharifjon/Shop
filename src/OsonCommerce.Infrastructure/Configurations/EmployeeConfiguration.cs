@@ -43,11 +43,6 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .HasColumnName("position")
             .HasMaxLength(50);
 
-        builder.Property(e => e.Department)
-            .HasColumnType("VARCHAR")
-            .HasColumnName("department")
-            .HasMaxLength(50);
-
         builder.Property(e => e.HireDate)
             .HasColumnType("TIMESTAMP WITH TIME ZONE")
             .HasColumnName("hire_date")
@@ -63,5 +58,13 @@ public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
             .HasColumnType("TEXT")
             .HasColumnName("password")
             .IsRequired();
+
+        builder.Property(e => e.StoreBranchIds)
+            .HasColumnType("uuid[]")
+            .HasColumnName("storebranch_ids")
+            .IsRequired();
+
+        builder.HasMany(e => e.StoreBranches)
+            .WithOne();
     }
 }

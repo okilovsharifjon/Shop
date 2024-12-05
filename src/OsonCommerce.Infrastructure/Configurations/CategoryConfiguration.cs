@@ -27,6 +27,11 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
             .HasColumnName("description")
             .HasMaxLength(500);
 
+        builder.Property(c => c.ParentId)
+            .HasColumnName("parent_id")
+            .HasColumnType("UUID")
+            .IsRequired(false);
+
         builder.HasMany(c => c.Products)
             .WithOne()
             .HasForeignKey(p => p.CategoryId)

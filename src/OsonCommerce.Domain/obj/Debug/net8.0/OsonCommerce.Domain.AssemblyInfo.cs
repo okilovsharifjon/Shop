@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("OsonCommerce.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+60f6d22a9823bf699a81ffd08267253331931639")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfc41a73a67ce9dd23992ab4917e0adc1e1257b0")]
 [assembly: System.Reflection.AssemblyProductAttribute("OsonCommerce.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OsonCommerce.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
