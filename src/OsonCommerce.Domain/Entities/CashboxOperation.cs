@@ -4,9 +4,11 @@ namespace OsonCommerce.Domain.Entities
     {
         public Guid Id { get; set; }
         public Guid CashboxId { get; set; }
-        public Guid EmployeeId { get; set; }
+        public Guid? EmployeeId { get; set; }
+        public Guid? CustomerId { get; set; }
         public decimal Amount { get; set; }
-        public string Currency { get; set; } 
+        public string Currency { get; set; }
+        public int PaymentMethod { get; set; }
         public DateTime Time { get; set; }
         public string Description { get; set; }
         public int TransactionType { get; set; }
